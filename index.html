@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Add Bootstrap, Bootstrap-Vue CSS, Vue,
+Babel, and Bootstrap-Vue JS to the <head> section -->
+<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+<!-- Add this after vue.js -->
+<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+    <meta charset="utf-8">
+    <title>an XRP Validator</title>
+    <link rel="stylesheet" href="/dist/main.css">
+  </head>
+  <body>
+  
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+    <script type="text/javascript">
+    // function([string1, string2],target id,[color1,color2])
+
+    consoleText(['is the digital asset for payments',
+    'was built for enterprise use',
+    'is frictionless',
+    'is fast, settling in just 4 seconds ',
+    'is now transacting       ',
+    'is confirming          ',
+    'transaction complete            ',
+    'provides an on demand option to source liquidity',
+    'has purpose, acting as a bridge currency',
+    'is scalable beyond its 1500 transactions per second',
+    'is reliable',
+    'is universally distributed and decentralised',
+    'enables cross-border payments in seconds',
+    'is the future of money, today',
+    'is the Internet of Value',
+    '                 '
+  ],'text',['black','black','black','black','red','orange','green','black','black','black','black','black','black','black','black','black']);
+
+  function consoleText(words, id, colors) {
+
+    if (colors === undefined) colors = ['#fff'];
+    var visible = true;
+    var con = document.getElementById('console');
+    var letterCount = 1;
+    var x = 1;
+    var waiting = false;
+    var target = document.getElementById(id)
+    target.setAttribute('style', 'color:' + colors[0])
+    window.setInterval(function() {
+
+      if (letterCount === 0 && waiting === false) {
+        waiting = true;
+        target.innerHTML = words[0].substring(0, letterCount)
+        window.setTimeout(function() {
+          var usedColor = colors.shift();
+          colors.push(usedColor);
+          var usedWord = words.shift();
+          words.push(usedWord);
+          x = 1;
+          target.setAttribute('style', 'color:' + colors[0])
+          letterCount += x;
+          waiting = false;
+        }, 200) //timer at start of new word
+      } else if (letterCount === words[0].length + 1 && waiting === false) {
+        waiting = true;
+        window.setTimeout(function() {
+          x = -1;
+          letterCount += x;
+          waiting = false;
+        }, 500) //timer at finish of word before de-typing
+      } else if (waiting === false) {
+        target.innerHTML = words[0].substring(0, letterCount)
+        letterCount += x;
+      }
+    }, 55)//speed of type
+    window.setInterval(function() {
+      if (visible === true) {
+        con.className = 'console-underscore hidden'
+        visible = false;
+
+      } else {
+        con.className = 'console-underscore'
+
+        visible = true;
+      }
+    }, 400)
+  }
+  </script>
+  </body>
+</html>
