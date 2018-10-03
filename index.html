@@ -2,11 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" id="bootstrap-css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default,es6,Object.assign,fetch,Promise"></script>
     <script src="https://polyfill.webmonetization.org/polyfill.js"></script>
     <script src="https://cdn.coil.com/donate.js"></script>
@@ -22,74 +21,7 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type=text/javascript>// function([string1, string2],target id,[color1,color2])
-      consoleText(['is the digital asset for payments',
-      'was built for enterprise use',
-      'is frictionless',
-      'is fast, settling in just 4 seconds ',
-      'is now transacting     ',
-      'is confirming        ',
-      'transaction complete          ',
-      'provides an on demand option to source liquidity',
-      'has purpose, acting as a bridge currency',
-      'is scalable beyond 50,000 transactions per second',
-      'is stable - all 30 million ledgers closed without issue',
-      'is universally distributed and decentralised',
-      'enables cross-border payments in seconds',
-      'is the future of money, today',
-      'is the Internet of Value',
-      '                 '
-    ],'text',['black','black','black','black','red','orange','green','black','black','black','black','black','black','black','black','black']);
-    
-    function consoleText(words, id, colors) {
-    
-      if (colors === undefined) colors = ['#fff'];
-      var visible = true;
-      var con = document.getElementById('console');
-      var letterCount = 1;
-      var x = 1;
-      var waiting = false;
-      var target = document.getElementById(id)
-      target.setAttribute('style', 'color:' + colors[0])
-      window.setInterval(function() {
-    
-        if (letterCount === 0 && waiting === false) {
-          waiting = true;
-          target.innerHTML = words[0].substring(0, letterCount)
-          window.setTimeout(function() {
-            var usedColor = colors.shift();
-            colors.push(usedColor);
-            var usedWord = words.shift();
-            words.push(usedWord);
-            x = 1;
-            target.setAttribute('style', 'color:' + colors[0])
-            letterCount += x;
-            waiting = false;
-          }, 500) //timer at start of new word
-        } else if (letterCount === words[0].length + 1 && waiting === false) {
-          waiting = true;
-          window.setTimeout(function() {
-            x = -1;
-            letterCount += x;
-            waiting = false;
-          }, 500) //timer at finish of word before de-typing
-        } else if (waiting === false) {
-          target.innerHTML = words[0].substring(0, letterCount)
-          letterCount += x;
-        }
-      }, 65)//speed of type
-      window.setInterval(function() {
-        if (visible === true) {
-          con.className = 'console-underscore hidden'
-          visible = false;
-    
-        } else {
-          con.className = 'console-underscore'
-    
-          visible = true;
-        }
-      }, 300)
-    }</script>
+   
 
   </body>
 </html>
