@@ -184,10 +184,10 @@ Loading <rates class="">
                  Loading...
                </div>
                <div v-else>
-                 <div class="table-responsive" style="margin-left: -11px; margin-top: -21px;">
-                   <table class ="table table-striped" style="width: 896px;">
-                   <thead>
-                     <tr class ="colorrow">
+                <div class="table-responsive" style="margin-left: -6px; margin-top: -20px; width: 885px;">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="colorrow2" style="width: 885px;">
                        <th class="text-left" scope="col">&nbsp;</th>
                        <th class="text-left" scope="col">Date</th>
                        <th class="text-left" scope="col">Agreement</th>
@@ -231,10 +231,10 @@ Loading <rates class="">
                  Loading...
                </div>
                <div v-else>
-                 <div class="table-responsive" style="margin-left: -11px; margin-top: -21px;">
-                   <table class ="table table-striped" style="width: 896px;">
-                   <thead>
-                     <tr class ="colorrow">
+                  <div class="table-responsive" style="margin-left: -6px; margin-top: -20px; width: 885px;">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="colorrow2" style="width: 885px;">
                        <th class="text-left" scope="col">Validation Public Key</th>
                        <th class="text-left" scope="col">Verification Status</th>
                        <th class="text-left" scope="col">Domain Name</th>
@@ -302,7 +302,7 @@ Loading <rates class="">
                           </tbody>
                         </table>
                       </div>
-                      <div class="table-responsive" style="margin-left: -6px; margin-top: -15px; width: 885px;">
+                      <div class="table-responsive" style="margin-left: -6px; margin-top: -20px; width: 885px;">
                         <table class="table table-striped">
                           <thead>
                             <tr class="colorrow" style="width: 885px;">
@@ -332,6 +332,54 @@ Loading <rates class="">
 
 
 
+   <div class="card" style="width: 885px;">
+          </div>
+
+          <div class="card-header" id="headingSix" align="left">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  XRP Distribution
+                                  </button>
+                                  <button class="btn btn-link collapsed float-right" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  <div class="picright"> <img src="../assets/xrpsm.png" /></div></button>
+            </h5>
+          </div>
+          <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordian">
+            <div class="card-body">
+              <div class="row">
+               <div v-if="!xrpDist.rows">
+                 Loading...
+               </div>
+               <div v-else>
+                  <div class="table-responsive" style="margin-left: -6px; margin-top: -20px; width: 885px;">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="colorrow2" style="width: 885px;">
+                              <th class="text-left" scope="col">Date</th>
+                              <th class="text-left" scope="col">Total</th>
+                              <th class="text-left" scope="col">Distributed</th>
+                              <th class="text-left" scope="col">Undistributed</th>
+                              <th class="text-left" scope="col">Escrowed</th>
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr scope="row" v-for="z in xrpDist.rows.slice().reverse()" v-bind:key="z.date">
+                              <td> {{ new Date(Date.parse(z.date)).toLocaleDateString('en-NZ',{ weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }} </td>
+                              <td> {{ z.total }} </td>
+                              <td> {{ z.distributed }}</td>
+                              <td> {{ z.undistributed }}</td>
+                              <td> {{ z.escrowed }}</td>
+                        
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 
 
 
@@ -358,8 +406,11 @@ Loading <rates class="">
 </template>
 
 <script>
+
+
 import axios from "axios";
 let apiInterval;
+
 
 export default {
   name: "XRP",
@@ -377,9 +428,10 @@ export default {
       appName: "ValApp",
       validatorsData: {},
       //Rippled end
-      //Rippled Lookup all xrp sales
-      appName: "XRPSales",
-      xrpData: {},
+     
+      //Rippled Lookup xrp distribution
+      appName: "XRPDist",
+      xrpDist: {},
       //Rippled end
         newMessage: '',
         message: '',
@@ -448,6 +500,17 @@ export default {
         this.xrpData = data;
       });
     //rippled lookup end
+     //rippled lookup xrp distribution
+    window
+      .fetch("https://data.ripple.com/v2/network/xrp_distribution")
+      .then(z => {
+        return z.json();
+      })
+      .then(data => {
+        // Set it to the Vue App data
+        this.xrpDist = data;
+      });
+    //rippled lookup end
   },
   destroyed() {
     clearInterval(apiInterval);
@@ -508,6 +571,8 @@ export default {
 </script>
 
 <style lang="scss">
+
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -516,6 +581,7 @@ export default {
   margin-top: -4px;
   align: center;
 }
+
 
 .container {
   padding: 0 0 0 0;
@@ -565,14 +631,14 @@ export default {
   
 }
 .colorrow {
-  width: 100%;
+  
   background-image: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
   background-attachment: fixed;
   border-top: solid 1px #000;
   border-bottom: solid 1px #000;
 }
 .colorrow2 {
-  width: 100%;
+ 
   background-image: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
   background-attachment: fixed;
   border-top: solid 1px #000;
@@ -680,7 +746,7 @@ table tr {
   span.cursor { 
   display: inline-block;
   position: relative;
-  left: -9px;
+  left: -7px;
   color: #666;
   top: 0.05em;
    }
@@ -826,4 +892,6 @@ table tr {
 .btn-outline-primary {
   font-size: 10px;
 }
+
+
 </style>
