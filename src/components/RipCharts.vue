@@ -1,6 +1,6 @@
 <template>
 
-      <div style= "bottom: 50px; left: 550px;">
+      <div style= "bottom: 50px; left: 20px;">
       <VueApexCharts width="800" height="200" type="bar" :options="options" :series="series"></VueApexCharts>
     </div>
 
