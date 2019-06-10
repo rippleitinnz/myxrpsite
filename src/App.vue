@@ -10,7 +10,6 @@
 
 <script>
 import RipHead from './components/RipHead';
-
 import RipBody from './components/RipBody';
 import RipFooter from './components/RipFooter';
 
@@ -25,3 +24,4 @@ export default {
 
 
 </script>
+

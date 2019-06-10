@@ -64,12 +64,11 @@
 import axios from "axios";
 
 let apiInterval;
-let apiIntervals;
-//---------------------------------
+
+
 export default {
   name: "XRP",
 
-  name: "sXRP",
   
   data: function() {
     return {
@@ -77,32 +76,20 @@ export default {
       cryptos: {
         XRP: {}
       },
-      //cryptoprices
-      scryptos: {
-        sXRP: {}
-      },
-
-      //Rawdata from my validator
+          //Rawdata from my validator
       serverState: null
    
     };
-  }, //end of return
-  //end of data
-  //--------------------------
+  }, 
 
   mounted() {
-      // Run rates immediately
+     
 
     this.fetchRates();
     // Set interval at 20 seconds (re-run)
     apiInterval = setInterval(this.fetchRates, 20 * 1000);
 
-    // Run Srates immediately
-
-    this.fetchSRates();
-
-    // Set interval at 20 seconds (re-run)
-    apiIntervals = setInterval(this.fetchSRates, 20 * 1000);
+  
     // Connect to server status
     this.serverStateHandler();
 
@@ -112,9 +99,7 @@ export default {
   destroyed() {
     clearInterval(apiInterval);
   },
-  destroyed() {
-    clearInterval(apiIntervals);
-  },
+ 
 
   //------------------------------------------------
   methods: {
@@ -139,21 +124,8 @@ export default {
         .catch(e => {
           window.console.log(e);
         });
-    },
-    //rates data short
-    fetchSRates() {
-      axios
-        .get(
-          "https://min-api.cryptocompare.com/data/pricemulti?fsyms=XRP&tsyms=USD"
-        )
-        .then(response => {
-          this.scryptos = response.data;
-          window.console.log(response);
-        })
-        .catch(f => {
-          window.console.log(f);
-        });
     }
+  
   }
 
   //end of methods

@@ -1,261 +1,121 @@
 <template>
-            <div
-              class="tab-pane h-100 p-3 active border border-info rounded-bottom rounded-right"
-              id="entry"
-              role="tabpanel"
-              aria-labelledby="entry-tab"
-              style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
+  <div
+    class="tab-pane h-100 p-3 active border border-info rounded-bottom rounded-right"
+    id="entry"
+    role="tabpanel"
+    aria-labelledby="entry-tab"
+    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
+  >
+    <!-- top of base info -->
+    <div
+      class="container-fluid"
+      align="left"
+      style="width: 860px; margin-top: 25px; height: 250px;"
+    >
+      <div style="margin-left:70px;">
+        <div>
+          <img
+            src="../assets/black.jpg"
+            class="float-left"
+            style="margin-left: -70px; width: 8%; height: auto; margin-top: 10px; "
+          >
+        </div>
+        <table
+          class="table table-borderless md p-3 mb-5 shadow bg-light rounded"
+          style="border-left: 0; border-right: 0; "
+        >
+          <thead>
+            <tr style="color: darkblue; font-size:12px;">
+              <th class="text-center" scope="col">Date</th>
+              <th class="text-center" scope="col">Ledger Count</th>
+              <th class="text-center" scope="col">Ledger Interval</th>
+              <th class="text-center" scope="col">Total Transactions</th>
+
+              <th class="text-center" scope="col">TX per Ledger</th>
+              <th class="text-center" scope="col">New Accounts</th>
+              <th class="text-center" scope="col">Exchange Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              scope="row"
+              v-for="a in xrpMetricDay.stats.slice().reverse().splice(index,1)"
+              v-bind:key="a.date"
             >
-              <!-- top of base info -->
-              <div
-                class="container-fluid"
-                align="left"
-                style="width: 860px; margin-top: 25px; height: 250px;"
-              >
-                <div style="margin-left:70px;">
-                  <div>
-                    <img
-                      src="../assets/black.jpg"
-                      class="float-left"
-                      style="margin-left: -70px; width: 8%; height: auto; margin-top: 10px; "
-                    >
-                  </div>
-                  <table
-                    class="table table-borderless md p-3 mb-5 shadow bg-light rounded"
-                    style="border-left: 0; border-right: 0; "
-                  >
-                    <thead>
-                      <tr style="color: darkblue; font-size:12px;">
-                        <th class="text-center" scope="col">Date</th>
-                        <th class="text-center" scope="col">Ledger Count</th>
-                        <th class="text-center" scope="col">Ledger Interval</th>
-                        <th class="text-center" scope="col">Total Transactions</th>
+              <td
+                class="text-center"
+                style="font-size: 13px;"
+              >{{ new Date(Date.parse(a.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric'}) }}</td>
+              <td class="text-center" style="font-size: 11px;">{{ a.metric.ledger_count }}</td>
+              <td
+                class="text-center"
+                style="font-size: 13px;"
+              >{{ (a.metric.ledger_interval * 1).toFixed(5)}}</td>
+              <td class="text-center" style="font-size: 13px;">{{ a.metric.transaction_count }}</td>
+              <td
+                class="text-center"
+                style="font-size: 13px;"
+              >{{ (a.metric.tx_per_ledger * 1).toFixed(5)}}</td>
+              <td class="text-center" style="font-size: 13px;">{{ a.metric.accounts_created }}</td>
+              <td
+                class="text-center"
+                style="font-size: 13px;"
+              >{{ (xrpData.data.total* 1).toFixed(0) }} xrp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                        <th class="text-center" scope="col">TX per Ledger</th>
-                        <th class="text-center" scope="col">New Accounts</th>
-                        <th class="text-center" scope="col">Exchange Volume</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        scope="row"
-                        v-for="a in xrpMetricDay.stats.slice().reverse().splice(index,1)"
-                        v-bind:key="a.date"
-                      >
-                        <td
-                          class="text-center"
-                          style="font-size: 13px;"
-                        >{{ new Date(Date.parse(a.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric'}) }}</td>
-                        <td class="text-center" style="font-size: 11px;">{{ a.metric.ledger_count }}</td>
-                        <td
-                          class="text-center"
-                          style="font-size: 13px;"
-                        >{{ (a.metric.ledger_interval * 1).toFixed(5)}}</td>
-                        <td
-                          class="text-center"
-                          style="font-size: 13px;"
-                        >{{ a.metric.transaction_count }}</td>
-                        <td
-                          class="text-center"
-                          style="font-size: 13px;"
-                        >{{ (a.metric.tx_per_ledger * 1).toFixed(5)}}</td>
-                        <td
-                          class="text-center"
-                          style="font-size: 13px;"
-                        >{{ a.metric.accounts_created }}</td>
-                        <td
-                          class="text-center"
-                          style="font-size: 13px;"
-                        >{{ (xrpData.data.total* 1).toFixed(0) }} xrp</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+      <div class="col">
+        <div class="smallest" align="center" style="font-size: 1.75em; margin-top: 80px;">
+          <span>
+            <p v-if="scryptos.XRP" style="color: darkblue;">
+              <span
+                style="color: blue;"
+                v-for="(rate, coin) in scryptos.XRP"
+                v-bind:key="coin"
+              >&nbsp; &nbsp; {{ rate }}&thinsp;</span>
+              <span style="font-size: .5em;">USD</span>
+            </p>
+            <span v-else>Loading</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- top of base info -->
+  </div>
 
-                <div class="col">
-                  <div class="smallest" align="center" style="font-size: 1.75em; margin-top: 80px;">
-                    <span>
-                      <p v-if="scryptos.XRP" style="color: darkblue;">
-                        <span
-                          style="color: blue;"
-                          v-for="(rate, coin) in scryptos.XRP"
-                          v-bind:key="coin"
-                        >&nbsp; &nbsp; {{ rate }}&thinsp;</span>
-                        <span style="font-size: .5em;">USD</span>
-                      </p>
-                      <span v-else>Loading</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <!-- top of base info -->
-            </div>
+  <!--end of Card 4-->
 
-           
-                  
-                  <!--end of Card 4-->
-    
-            <!-- End of Tab1-->
-       
-
+  <!-- End of Tab1-->
 </template>
 <script>
 import axios from "axios";
 
-// charts
-import VueApexCharts from "vue-apexcharts";
-let apiInterval;
 let apiIntervals;
 //---------------------------------
 export default {
-  name: "XRP",
-
   name: "sXRP",
-  // charts
-  name: "Vue Chart",
-  components: { VueApexCharts },
-  //----------------------------------
+
   data: function() {
     return {
-      //chart
-      options: {
-        chart: {
-          id: "vuechart-example"
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-        }
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [10, 20, 30, 40, 50, 60, 70, 90]
-        }
-      ],
-
-      //cryptoprices
-      cryptos: {
-        XRP: {}
-      },
       //cryptoprices
       scryptos: {
         sXRP: {}
       },
 
-      //Rawdata from my validator
-      serverState: null,
-
-      //Rippled Lookup my validator
-      appName: "SampleApp",
-      validatorData: {},
-
-      //Rippled Lookup all validators
-      appName: "ValApp",
-      validatorsData: {},
-
-      //Rippled Lookup all metrics
-      appName: "xrpMetrics",
-      xrpMetrics: {},
-
-      //Rippled Lookup all fees
-      appName: "xrpFees",
-      xrpFees: {},
-
       //Rippled Lookup all metrics
       appName: "xrpMetricsDay",
       xrpMetricDay: {},
-
-      //Rippled Lookup xrp distribution
-      appName: "XRPDist",
-      xrpDist: {}
-
-      /*     //Messages
-      newMessage: "",
-      message: "",
-      cursor: "",
-      messages: [
-        "is the digital asset for payments",
-        "was built for enterprise use",
-        "is frictionless",
-        "is fast, settling in just 4 seconds",
-        "provides an on demand option to source liquidity",
-        "has purpose, acting as a bridge currency",
-        "is scalable beyond 1500 transactions per second",
-        "is stable - all 40 million ledgers closed without issue",
-        "is universally distributed and decentralised",
-        "enables cross-border payments in seconds",
-        "is the future of money, today",
-        "is the Internet of Value"
-      ] 
-   */
+      xrpData: {}
     };
-  }, //end of return
-  //end of data
-  //--------------------------
+  },
 
   mounted() {
-    //  this.scrollText();
-
-    // Run rates immediately
-
-    this.fetchRates();
-    // Set interval at 20 seconds (re-run)
-    apiInterval = setInterval(this.fetchRates, 20 * 1000);
-
-    // Run Srates immediately
-
     this.fetchSRates();
 
     // Set interval at 20 seconds (re-run)
     apiIntervals = setInterval(this.fetchSRates, 20 * 1000);
-    // Connect to server status
-    this.serverStateHandler();
-    //rippled Lookup my validator
-    window
-      .fetch(
-        "https://data.ripple.com/v2/network/validators/nHUcQnmEbCNq4uhntFudzfrZV8P5WLoBrR5h3R9jAd621Aaz1pSy/reports"
-      )
-      .then(r => {
-        return r.json();
-      })
-      .then(data => {
-        // Set it to the Vue App data
-        this.validatorData = data;
-      });
-    //rippled Lookup all validators
-    window
-      .fetch("https://data.ripple.com/v2/network/validators/")
-      .then(q => {
-        return q.json();
-      })
-      .then(data => {
-        // Set it to the Vue App data
-        this.validatorsData = data;
-      });
-
-    //rippled Lookup all stats
-    window
-      .fetch("https://data.ripple.com/v2/stats?descending=true&limit=100")
-      .then(p => {
-        return p.json();
-      })
-      .then(data => {
-        // Set it to the Vue App data
-        this.xrpMetrics = data;
-      });
-
-    //rippled Lookup all fees
-    window
-      .fetch(
-        "https://data.ripple.com/v2/network/fees?interval=day&descending=true&limit=100"
-      )
-      .then(d => {
-        return d.json();
-      })
-      .then(data => {
-        // Set it to the Vue App data
-        this.xrpFees = data;
-      });
 
     //rippled Lookup all stats
     window
@@ -278,112 +138,15 @@ export default {
         // Set it to the Vue App data
         this.xrpData = data;
       });
-
-    //rippled lookup xrp distribution
-    window
-      .fetch("https://data.ripple.com/v2/network/xrp_distribution")
-      .then(z => {
-        return z.json();
-      })
-      .then(data => {
-        // Set it to the Vue App data
-        this.xrpDist = data;
-      });
-    //rippled lookup xrp distribution short
-    window
-      .fetch(
-        "https://data.ripple.com/v2/network/xrp_distribution?descending=true&limit=1"
-      )
-      .then(k => {
-        return k.json();
-      })
-      .then(data => {
-        // Set it to the Vue App data
-        this.xrpBurn = data;
-      });
   },
 
   //end of mounted
-  destroyed() {
-    clearInterval(apiInterval);
-  },
   destroyed() {
     clearInterval(apiIntervals);
   },
 
   //------------------------------------------------
   methods: {
-    //message scroller
-
-    /*   removeMessage(message) {
-        this.messages.splice(this.messages.indexOf(message), 1);
-      },
-      addMessage() {
-        if (this.newMessage.trim() !== "") {
-          this.messages.push(this.newMessage);
-          this.newMessage = "";
-        }
-      },
-      scrollText() {
-        setInterval(() => {
-          this.cursor = this.cursor === "|" ? "" : "|";
-        }, 450); //cursor flash speed
-        let iteration = 0;
-        let interval;
-        const run = () => {
-          if (iteration > this.messages.length - 1) iteration = 0;
-          this.message = "";
-          interval = setInterval(() => {
-            this.message = this.messages[iteration].slice(
-              0,
-              this.message.length + 2
-            );
-            if (this.message.length === this.messages[iteration].length) {
-              clearInterval(interval);
-              iteration++;
-              setTimeout(run, 2500); // 2.5 sec pause then next sentence
-            }
-          }, 25); // 1 char every .1 sec
-        };
-        run();
-      },
-  */
-
-    /*    // chart rebuild button
-      updateChart() {
-        const max = 90;
-        const min = 20;
-        const newData = this.series[0].data.map(() => {
-          return Math.floor(Math.random() * (max - min + 1)) + min;
-        });
-        this.series = [
-          {
-            data: newData
-          }
-        ];
-      },
-*/
-    //rippled data from my server
-    serverStateHandler() {
-      const s = new WebSocket("wss://rippleitin.nz");
-      s.onmessage = m => {
-        this.serverState = JSON.parse(m.data);
-      };
-    },
-    //rates data
-    fetchRates() {
-      axios
-        .get(
-          "https://min-api.cryptocompare.com/data/pricemulti?fsyms=XRP&tsyms=USD,EUR,AUD,NZD"
-        )
-        .then(response => {
-          this.cryptos = response.data;
-          window.console.log(response);
-        })
-        .catch(e => {
-          window.console.log(e);
-        });
-    },
     //rates data short
     fetchSRates() {
       axios
@@ -394,8 +157,8 @@ export default {
           this.scryptos = response.data;
           window.console.log(response);
         })
-        .catch(f => {
-          window.console.log(f);
+        .catch(w => {
+          window.console.log(w);
         });
     }
   }
@@ -403,10 +166,6 @@ export default {
   //end of methods
 };
 </script>
-
-
-
-
 
 
 <style lang="scss">
