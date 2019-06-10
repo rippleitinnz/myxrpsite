@@ -1,21 +1,18 @@
 <template>
-
-      <div style= "bottom: 50px; left: 20px;">
+  <div></div>
+  <!-- <div style= "bottom: 50px; left: 20px;">
       <VueApexCharts width="800" height="200" type="bar" :options="options" :series="series"></VueApexCharts>
-    </div>
-
+  </div>-->
 </template>
 
 <script>
-
 // charts
 import VueApexCharts from "vue-apexcharts";
 
 export default {
-
   name: "Vue Chart",
   components: { VueApexCharts },
- 
+
   data: function() {
     return {
       //chart
@@ -32,12 +29,11 @@ export default {
           name: "series-1",
           data: [10, 20, 30, 40, 50, 60, 70, 90]
         }
-      ],
+      ]
     };
-  }, 
+  },
 
   mounted() {
-   
     //rippled Lookup all stats
     window
       .fetch("https://data.ripple.com/v2/stats?descending=true&limit=100")
@@ -48,11 +44,7 @@ export default {
         // Set it to the Vue App data
         this.xrpMetrics = data;
       });
-
-   
-  },
-
- 
+  }
 };
 </script>
 

@@ -1,63 +1,63 @@
 <template>
-     <div class="container-fluid">
-      <div class="header">
-        <div class="row" style="margin-right: 5px;">
-          <div class="smallbig" style="width: 48.5%;">
-            <div>
-              <div>rippleitin.nz &nbsp;</div>
-            </div>
+  <div class="container-fluid">
+    <div class="header">
+      <div class="row" style="margin-right: 5px;">
+        <div class="smallbig" style="width: 48.5%;">
+          <div>
+            <div>rippleitin.nz &nbsp;</div>
+          </div>
 
-            <div>
-              <div class="smallleft">
-                <div>
-                  Built with
-                  <a
-                    class="ripple"
-                    href="https://developers.ripple.com/build-run-rippled-ubuntu.html"
-                    target="_blank"
-                    style="text-decoration:none;"
-                    title="Learn how to build a Rippled server"
-                  >RIPPLED</a> version
-                  <span
-                    class="ripple"
-                    v-if="serverState !== null"
-                  >{{ serverState.build_version }}</span>
-                </div>
+          <div>
+            <div class="smallleft">
+              <div>
+                Built with
+                <a
+                  class="ripple"
+                  href="https://developers.ripple.com/build-run-rippled-ubuntu.html"
+                  target="_blank"
+                  style="text-decoration:none;"
+                  title="Learn how to build a Rippled server"
+                >RIPPLED</a> version
+                <span
+                  class="ripple"
+                  v-if="serverState !== null"
+                >{{ serverState.build_version }}</span>
               </div>
             </div>
           </div>
-          <!--   -->
-          <div style="font-size: 1rem; align: center; margin-top: 5px;">
-            <a
-              href="https://twitter.com/rippleitinNZ"
-              target="_blank"
-              style="text-decoration:none;"
-              class="icoTwitter"
-              title="find us on Twitter"
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-          </div>
+        </div>
+        <!--   -->
+        <div style="font-size: 1rem; align: center; margin-top: 5px;">
+          <a
+            href="https://twitter.com/rippleitinNZ"
+            target="_blank"
+            style="text-decoration:none;"
+            class="icoTwitter"
+            title="find us on Twitter"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
 
-          <div class="col">
-            <div class="smallest" align="right">
-              <span>
-                <p v-if="cryptos.XRP" style="color: black;">
-                  Live
-                  <a style="color: rgb(56, 86, 141);">XRP&nbsp;</a>prices
-                  <span
-                    style="color: black;"
-                    v-for="(rate, coin) in cryptos.XRP"
-                    v-bind:key="coin"
-                  >&nbsp; &nbsp; {{ rate }}&thinsp;{{ coin }}</span>
-                </p>
-                <span v-else>Loading</span>
-              </span>
-            </div>
+        <div class="col">
+          <div class="smallest" align="right">
+            <span>
+              <p v-if="cryptos.XRP" style="color: black;">
+                Live
+                <a style="color: rgb(56, 86, 141);">XRP&nbsp;</a>prices
+                <span
+                  style="color: black;"
+                  v-for="(rate, coin) in cryptos.XRP"
+                  v-bind:key="coin"
+                >&nbsp; &nbsp; {{ rate }}&thinsp;{{ coin }}</span>
+              </p>
+              <span v-else>Loading</span>
+            </span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -65,45 +65,36 @@ import axios from "axios";
 
 let apiInterval;
 
-
 export default {
   name: "XRP",
 
-  
   data: function() {
     return {
       //cryptoprices
       cryptos: {
         XRP: {}
       },
-          //Rawdata from my validator
+      //Rawdata from my validator
       serverState: null
-   
     };
-  }, 
+  },
 
   mounted() {
-     
-
     this.fetchRates();
     // Set interval at 20 seconds (re-run)
     apiInterval = setInterval(this.fetchRates, 20 * 1000);
 
-  
     // Connect to server status
     this.serverStateHandler();
-
   },
 
   //end of mounted
   destroyed() {
     clearInterval(apiInterval);
   },
- 
 
   //------------------------------------------------
   methods: {
-    
     //rippled data from my server
     serverStateHandler() {
       const s = new WebSocket("wss://rippleitin.nz");
@@ -125,7 +116,6 @@ export default {
           window.console.log(e);
         });
     }
-  
   }
 
   //end of methods

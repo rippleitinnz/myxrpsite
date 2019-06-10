@@ -465,12 +465,9 @@
 </template>
 
 <script>
-
 export default {
- 
   data: function() {
     return {
-      
       //Rippled Lookup all validators
       appName: "AllVal",
       validatorsData: {},
@@ -494,13 +491,11 @@ export default {
       //Rippled Lookup xrp distribution
       appName: "XRPBurn",
       xrpBurn: {}
-
     };
-  }, 
+  },
   //--------------------------
 
   mounted() {
-    
     //rippled Lookup all validators
     window
       .fetch("https://data.ripple.com/v2/network/validators/")
@@ -535,7 +530,7 @@ export default {
         // Set it to the Vue App data
         this.xrpFees = data;
       });
-    
+
     //rippled lookup xrp sales
     window
       .fetch("https://data.ripple.com/v2/network/external_markets")
@@ -569,10 +564,9 @@ export default {
         // Set it to the Vue App data
         this.xrpBurn = data;
       });
-  },
+  }
 
   //end of mounted
-
 };
 </script>
 
