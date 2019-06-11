@@ -18,7 +18,6 @@
         </div>
       </div>
     </div>
-    <RipCharts/>
   </div>
 </template>
 
@@ -29,7 +28,6 @@ import RipTabOne from "./RipTabOne";
 import RipTabTwo from "./RipTabTwo";
 import RipTabThree from "./RipTabThree";
 import RipTabFour from "./RipTabFour";
-import RipCharts from "./RipCharts";
 
 export default {
   name: "XRP",
@@ -39,8 +37,7 @@ export default {
     RipTabOne,
     RipTabTwo,
     RipTabThree,
-    RipTabFour,
-    RipCharts
+    RipTabFour
   },
   //----------------------------------
   data: function() {

@@ -10,7 +10,7 @@
     <div
       class="container-fluid"
       align="left"
-      style="width: 860px; margin-top: 25px; height: 250px;"
+      style="width: 860px; margin-top: 25px; height: auto;"
     >
       <div style="margin-left:70px;">
         <div>
@@ -67,18 +67,10 @@
       </div>
 
       <div class="col">
-        <div class="smallest" align="center" style="font-size: 1.75em; margin-top: 80px;">
-          <span>
-            <p v-if="scryptos.XRP" style="color: darkblue;">
-              <span
-                style="color: blue;"
-                v-for="(rate, coin) in scryptos.XRP"
-                v-bind:key="coin"
-              >&nbsp; &nbsp; {{ rate }}&thinsp;</span>
-              <span style="font-size: .5em;">USD</span>
-            </p>
-            <span v-else>Loading</span>
-          </span>
+        <div align="center" style="font-size: 1.75em;margin-left: -20px;">
+<p style="font-size: 16px; color: darkblue;">New Accounts Created</p>
+          <RipCharts/>
+         
         </div>
       </div>
     </div>
@@ -91,11 +83,14 @@
 </template>
 <script>
 import axios from "axios";
-
+import RipCharts from "./RipCharts";
 let apiIntervals;
 //---------------------------------
 export default {
   name: "sXRP",
+   components: {
+       RipCharts
+  },
 
   data: function() {
     return {
