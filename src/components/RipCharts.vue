@@ -38,12 +38,12 @@ export default {
           gradient: {
             shade: "dark",
             type: "horizontal",
-            shadeIntensity: 0.5,
+            shadeIntensity: 0.7,
             gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
             inverseColors: true,
             opacityFrom: 1,
             opacityTo: 1,
-            stops: [0, 50, 100],
+            stops: [0, 75, 100],
             colorStops: []
           }
         },
