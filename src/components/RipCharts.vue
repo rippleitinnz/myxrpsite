@@ -72,13 +72,14 @@ export default {
     fetch(this.url + "stats?descending=true&limit=" + this.days)
       .then(response => {
         return response.json();
+        
       })
       .then(json => {
         // Set it to the Vue App data
         this.data = json;
         console.log(json.result);
         this.axis();
-      });
+       });
   },
   methods: {
     axis: function() {
@@ -102,7 +103,9 @@ export default {
       }
     }
   },
+  
   computed: {
+    
     Xaxis() {
       return null;
     },
