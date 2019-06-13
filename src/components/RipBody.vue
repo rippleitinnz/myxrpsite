@@ -30,16 +30,14 @@ import RipTabThree from "./RipTabThree";
 import RipTabFour from "./RipTabFour";
 
 export default {
-  name: "XRP",
-
-  components: {
+   components: {
     RipTabsMake,
     RipTabOne,
     RipTabTwo,
     RipTabThree,
     RipTabFour
   },
-  //----------------------------------
+  
   data: function() {
     return {};
   } //end of return

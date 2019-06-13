@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VueApexCharts width="850" height="250" type="bar" :options="ChartOptions" :series="series"></VueApexCharts>
+    <VueApexCharts width="850" height="200" type="bar" :options="ChartOptions" :series="series"></VueApexCharts>
   </div>
 </template>
 
@@ -31,7 +31,10 @@ export default {
           }
         },
         stroke: {
-          curve: "smooth"
+          show: true,
+          curve: "smooth",
+          lineCap: "butt",
+          colors: undefined
         },
         fill: {
           type: "gradient",
@@ -53,9 +56,9 @@ export default {
 
         xaxis: {
           categories: [],
-          tickAmount: 6,
           labels: {
-            hideOverlappingLabels: false
+            tickAmount: 8,
+            hideOverlappingLabels: true
           }
         }
       },
@@ -70,17 +73,18 @@ export default {
   mounted() {
     //rippled Lookup all stats
     fetch(this.url + "stats?descending=true&limit=" + this.days)
-      .then(response => {
-        return response.json();
-        
+      .then(b => {
+        return b.json();
       })
+
       .then(json => {
         // Set it to the Vue App data
         this.data = json;
         console.log(json.result);
         this.axis();
-       });
+      });
   },
+
   methods: {
     axis: function() {
       var days = parseInt(this.days, 10);
@@ -93,6 +97,8 @@ export default {
         var stat = this.data.stats[i].metric.accounts_created;
         this.series[0].data.push(stat);
       }
+      this.ChartOptions.xaxis.categories.reverse();
+      this.series[0].data.reverse();
     },
     yas() {
       var i;
@@ -103,15 +109,13 @@ export default {
       }
     }
   },
-  
   computed: {
-    
     Xaxis() {
       return null;
     },
     Yaxis() {
       return null;
-    },
+    }
   }
 };
 </script>

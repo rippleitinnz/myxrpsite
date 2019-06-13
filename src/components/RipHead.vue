@@ -126,6 +126,7 @@ export default {
 <style lang="scss">
 #app {
   @import url(https://fonts.googleapis.com/css?family=Avenir);
+
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -165,6 +166,8 @@ export default {
   margin-bottom: 2px;
   border: 1px solid rgb(202, 202, 202);
 }
+
+
 
 .photo {
   background: url("../assets/fishing.jpg");

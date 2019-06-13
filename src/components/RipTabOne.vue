@@ -7,11 +7,7 @@
     style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
     <!-- top of base info -->
-    <div
-      class="container-fluid"
-      align="left"
-      style="width: 860px; margin-top: 25px; height: auto;"
-    >
+    <div class="container-fluid" align="left" style="width: 860px; margin-top: 25px; height: auto;">
       <div style="margin-left:70px;">
         <div>
           <img
@@ -67,10 +63,17 @@
       </div>
 
       <div class="col">
-        <div align="center" style="font-size: 1.75em;margin-left: -20px;">
-<p style="font-size: 16px; color: darkblue;">New Accounts Created</p>
+        <div align="center" style="margin-left: -20px;">
+          <p style="font-size: 16px; color: darkblue; margin-left: 20px;">New XRPL Accounts Created</p>
           <RipCharts/>
-         
+          <p style="font-size: 16px; color: darkblue; margin-left: 20px;">XRPL Total Transactions</p>
+          <RipCharts2/>
+        </div>
+
+        <div class="col">
+          <div align="center">
+            <p style="font-size: 16px; color: darkblue;margin-left: 20px;">Last 45 Days</p>
+          </div>
         </div>
       </div>
     </div>
@@ -84,12 +87,14 @@
 <script>
 import axios from "axios";
 import RipCharts from "./RipCharts";
+import RipCharts2 from "./RipCharts2";
 let apiIntervals;
 //---------------------------------
 export default {
   name: "sXRP",
-   components: {
-       RipCharts
+  components: {
+    RipCharts,
+    RipCharts2
   },
 
   data: function() {
@@ -100,7 +105,7 @@ export default {
       },
 
       //Rippled Lookup all metrics
-      appName: "xrpMetricsDay",
+      appName: "xrpMetricDay",
       xrpMetricDay: {},
       xrpData: {}
     };
@@ -152,7 +157,7 @@ export default {
           this.scryptos = response.data;
           window.console.log(response);
         })
-        .catch(w => {
+         .catch(w => {
           window.console.log(w);
         });
     }

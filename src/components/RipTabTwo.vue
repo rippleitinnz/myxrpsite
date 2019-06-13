@@ -1,5 +1,5 @@
 <template>
-  <!-- Tab One Card One-->
+  <!-- Tab One-->
   <div
     class="tab-pane h-100 p-3 border border-info rounded"
     id="XRPL"
@@ -8,22 +8,22 @@
   >
     <div class="card" style="width: 885px; margin-top: 25px;">
       <div id="accordian">
-        <!--Card One -->
-        <div class="card-header" id="headingOne" align="left">
+        <!--Card Metrics -->
+        <div class="card-header" id="headingMetrics" align="left">
           <h5 class="mb-0">
             <button
               class="btn btn-link collapsed"
               data-toggle="collapse"
-              data-target="#collapseOne"
+              data-target="#collapseMetrics"
               aria-expanded="false"
-              aria-controls="collapseOne"
+              aria-controls="collapseMetrics"
             >XRP Ledger Metrics</button>
             <button
               class="btn btn-link collapsed float-right"
               data-toggle="collapse"
-              data-target="#collapseOne"
+              data-target="#collapseMetrics"
               aria-expanded="false"
-              aria-controls="collapseOne"
+              aria-controls="collapseMetrics"
             >
               <div class="picright">
                 <img src="../assets/xrpsm.png">
@@ -33,9 +33,9 @@
         </div>
 
         <div
-          id="collapseOne"
+          id="collapseMetrics"
           class="collapse"
-          aria-labelledby="headingOne"
+          aria-labelledby="headingMetrics"
           data-parent="#accordian"
         >
           <div class="card-body">
@@ -78,22 +78,22 @@
           </div>
         </div>
 
-        <!--Card OneA -->
-        <div class="card-header" id="headingOne2" align="left">
+        <!--Card Week -->
+        <div class="card-header" id="headingWeek" align="left">
           <h5 class="mb-0">
             <button
               class="btn btn-link collapsed"
               data-toggle="collapse"
-              data-target="#collapseOne2"
+              data-target="#collapseWeek"
               aria-expanded="false"
-              aria-controls="collapseOne2"
-            >XRP Ledger Fees</button>
+              aria-controls="collapseWeek"
+            >XRP Ledger Metrics by Week - Full History</button>
             <button
               class="btn btn-link collapsed float-right"
               data-toggle="collapse"
-              data-target="#collapseOne2"
+              data-target="#collapseWeek"
               aria-expanded="false"
-              aria-controls="collapseOne2"
+              aria-controls="collapseWeek"
             >
               <div class="picright">
                 <img src="../assets/xrpsm.png">
@@ -103,15 +103,86 @@
         </div>
 
         <div
-          id="collapseOne2"
+          id="collapseWeek"
           class="collapse"
-          aria-labelledby="headingOne2"
+          aria-labelledby="headingWeek"
           data-parent="#accordian"
         >
           <div class="card-body">
             <div class="row">
-              <div v-if="!xrpBurn.rows">Loading...</div>
+              <div v-if="!xrpMetricsAll.stats">Loading...</div>
               <div v-else>
+                <div
+                  class="table-responsive"
+                  style="margin-left: -6px; margin-top: -20px; width: 885px;"
+                >
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class="colorrow2" style="width: 885px;">
+                        <th class="text-left" scope="col">&nbsp;</th>
+                        <th class="text-left" scope="col">Date</th>
+                        <th class="text-right" scope="col">Ledger Count</th>
+                        <th class="text-right" scope="col">Ledger Interval</th>
+                        <th class="text-right" scope="col">Total Transactions</th>
+                        <th class="text-center" scope="col">TX per Ledger</th>
+                        <th class="text-center" scope="col">New Accounts</th>
+                        <th class="text-center" scope="col">Total Accounts</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr scope="row" v-for="row in xrpMetricsAll.stats" v-bind:key="row.date">
+                        <td></td>
+                        <td
+                          class="text-left"
+                        >{{ new Date(Date.parse(row.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
+                        <td class="text-right">{{ row.metric.ledger_count }}</td>
+                        <td class="text-right">{{ (row.metric.ledger_interval * 1).toFixed(5)}}</td>
+                        <td class="text-right">{{ row.metric.transaction_count }}</td>
+                        <td class="text-right">{{ (row.metric.tx_per_ledger * 1).toFixed(5)}}</td>
+                        <td class="text-right">{{ row.metric.accounts_created }} &nbsp; &nbsp;</td>
+                        <td class="text-right"> {{ total(row.metric.accounts_created) }}&nbsp; &nbsp;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Card Fees-->
+        <div class="card-header" id="headingFees" align="left">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapseFees"
+              aria-expanded="false"
+              aria-controls="collapseFees"
+            >XRP Ledger Fees</button>
+            <button
+              class="btn btn-link collapsed float-right"
+              data-toggle="collapse"
+              data-target="#collapseFees"
+              aria-expanded="false"
+              aria-controls="collapseFees"
+            >
+              <div class="picright">
+                <img src="../assets/xrpsm.png">
+              </div>
+            </button>
+          </h5>
+        </div>
+
+        <div
+          id="collapseFees"
+          class="collapse"
+          aria-labelledby="headingFees"
+          data-parent="#accordian"
+        >
+          <div class="card-body">
+            <div class="row">
+              <div>
                 <div
                   class="table-responsive"
                   style="margin-left: -6px; margin-top: -20px; width: 885px;"
@@ -186,22 +257,22 @@
             </div>
           </div>
         </div>
-        <!-- card two-->
-        <div class="card-header" id="headingTwo" align="left">
+        <!-- card four-->
+        <div class="card-header" id="headingTransactions" align="left">
           <h5 class="mb-0">
             <button
               class="btn btn-link collapsed"
               data-toggle="collapse"
-              data-target="#collapseTwo"
+              data-target="#collapseTransactions"
               aria-expanded="false"
-              aria-controls="collapseTwo"
+              aria-controls="collapseTransactions"
             >XRP Transactions - Previous 24hrs - by Exchange</button>
             <button
               class="btn btn-link collapsed float-right"
               data-toggle="collapse"
-              data-target="#collapseTwo"
+              data-target="#collapseTransactions"
               aria-expanded="false"
-              aria-controls="collapseTwo"
+              aria-controls="collapseTransactions"
             >
               <div class="picright">
                 <img src="../assets/xrpsm.png">
@@ -210,9 +281,9 @@
           </h5>
         </div>
         <div
-          id="collapseTwo"
+          id="collapseTransactions"
           class="collapse"
-          aria-labelledby="headingTwo"
+          aria-labelledby="headingTransactions"
           data-parent="#accordian"
         >
           <div class="card-body">
@@ -283,7 +354,7 @@
           </div>
         </div>
 
-        <!-- Card three-->
+        <!-- Card 5 Distribution-->
         <div class="card-header" id="headingThree" align="left">
           <h5 class="mb-0">
             <button
@@ -350,6 +421,7 @@
           </div>
         </div>
 
+        <!--Card 6 Validators-->
         <div class="card-header" id="headingFour" align="left">
           <h5 class="mb-0">
             <button
@@ -380,8 +452,6 @@
         >
           <div class="form-group"></div>
 
-          <!--switch-->
-          <!--switch end-->
           <div class="card-body">
             <div class="row">
               <div v-if="!validatorsData.validators">Loading...</div>
@@ -465,35 +535,30 @@
 </template>
 
 <script>
+let runningTotal = [];
 export default {
   data: function() {
     return {
       //Rippled Lookup all validators
-      appName: "AllVal",
+      appName: "xrpAllVal",
       validatorsData: {},
 
-      //Rippled Lookup all metrics
-      appName: "xrpMetrics",
       xrpMetrics: {},
 
-      //Rippled Lookup all fees
-      appName: "xrpFees",
+      xrpMetricsAll: {},
+
       xrpFees: {},
 
-      //Rippled Lookup xrp distribution
-      appName: "XRPDist",
       xrpDist: {},
 
-      //Rippled Lookup xrp sales
-      appName: "XRPSales",
       xrpData: {},
 
-      //Rippled Lookup xrp distribution
-      appName: "XRPBurn",
       xrpBurn: {}
     };
   },
   //--------------------------
+
+    
 
   mounted() {
     //rippled Lookup all validators
@@ -507,7 +572,7 @@ export default {
         this.validatorsData = data;
       });
 
-    //rippled Lookup all stats
+    //rippled Lookup all stats by day (100)
     window
       .fetch("https://data.ripple.com/v2/stats?descending=true&limit=100")
       .then(p => {
@@ -518,7 +583,7 @@ export default {
         this.xrpMetrics = data;
       });
 
-    //rippled Lookup all fees
+       //rippled Lookup all fees
     window
       .fetch(
         "https://data.ripple.com/v2/network/fees?interval=day&descending=true&limit=100"
@@ -564,9 +629,35 @@ export default {
         // Set it to the Vue App data
         this.xrpBurn = data;
       });
-  }
+  },
+  methods: {
+  	total (val) {
+    	runningTotal.push(val);
+      
+    	return runningTotal.reduce((acc, curr) => acc + curr, 0);
+    }
+  },
+  
+  created () {
+  	window
+      .fetch(
+        "https://data.ripple.com/v2/stats?interval=week&limit=400"
+      )
+      .then(x => {
+        return x.json();
+      })
+      .then(data => {
+        // Set it to the Vue App data
+        this.xrpMetricsAll = data;
+      });
+  },
 
-  //end of mounted
+//end of mounted
+
+
 };
+
+
+
 </script>
 
