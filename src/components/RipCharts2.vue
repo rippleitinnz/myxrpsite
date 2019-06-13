@@ -11,7 +11,7 @@ import VueApexCharts from "vue-apexcharts";
 import * as moment from "moment";
 
 export default {
-  name: "Vue Chart",
+  name: "VueChart",
   components: { VueApexCharts },
 
   data() {

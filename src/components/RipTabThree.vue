@@ -280,7 +280,7 @@
                       <tr
                         scope="row"
                         v-for="r in validatorData.reports.slice().reverse()"
-                        v-bind:key="r.date"
+                        v-bind:key="`RRR-${r.date}`"
                       >
                         <td></td>
                         <td>{{ new Date(Date.parse(r.date)).toLocaleDateString('en-NZ',{ weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>

@@ -48,7 +48,7 @@
                 <span
                   style="color: black;"
                   v-for="(rate, coin) in cryptos.XRP"
-                  v-bind:key="coin"
+                  v-bind:key="`COINCOIN-${coin}`"
                 >&nbsp; &nbsp; {{ rate }}&thinsp;{{ coin }}</span>
               </p>
               <span v-else>Loading</span>

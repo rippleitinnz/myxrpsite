@@ -59,7 +59,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="p in xrpMetrics.stats" v-bind:key="p.date">
+                      <tr scope="row" v-for="p in xrpMetrics.stats" v-bind:key="`PPP-${p.date}`">
                         <td></td>
                         <td
                           class="text-left"
@@ -130,7 +130,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="stat in xrpMetricsAll.stats" v-bind:key="stat.date">
+                      <tr scope="row" v-for="stat in xrpMetricsAll.stats" v-bind:key="`STATSTAT-${stat.date}`">
                         <td></td>
                         <td
                           class="text-left"
@@ -203,7 +203,7 @@
                       <tr
                         scope="row"
                         v-for="k in xrpBurn.rows.slice().reverse()"
-                        v-bind:key="k.date"
+                        v-bind:key="`KKK-${k.date}`"
                       >
                         <td>{{ new Date(Date.parse(k.date)).toLocaleDateString('en-NZ',{ weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
                         <td></td>
@@ -239,7 +239,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="d in xrpFees.rows" v-bind:key="d.date">
+                      <tr scope="row" v-for="d in xrpFees.rows" v-bind:key="`DDD-${d.date}`">
                         <td></td>
                         <td
                           class="text-left"
@@ -338,7 +338,7 @@
                       <tr
                         scope="row"
                         v-for="w in xrpData.data.components.slice().sort()"
-                        v-bind:key="w.base_volume"
+                        v-bind:key="`WWW-${w.base_volume}`"
                       >
                         <td>{{ w.source }}</td>
                         <td>{{ (w.base_volume * 1).toFixed(5) }}</td>
@@ -405,7 +405,7 @@
                       <tr
                         scope="row"
                         v-for="z in xrpDist.rows.slice().reverse()"
-                        v-bind:key="z.date"
+                        v-bind:key="`ZZZ-${z.date}`"
                       >
                         <td>{{ new Date(Date.parse(z.date)).toLocaleDateString('en-NZ',{ weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
                         <td>{{ z.total }}</td>
@@ -476,7 +476,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="q in validatorsData.validators" v-bind:key="q.unl">
+                      <tr scope="row" v-for="q in validatorsData.validators" v-bind:key="`QQQ-${q.unl}`">
                         <td class="Tab4">
                           <a
                             v-bind:href="'https://xrpcharts.ripple.com/#/validators/' + q.validation_public_key"
@@ -500,7 +500,7 @@
                         <td class="Tab4">
                           <p
                             style="text-align: center; color: darkgreen; margin-bottom: 0; font-size: 11px;"
-                            v-if="q.unl"
+                            v-if="`QQ-${q.unl}`"
                           >yes</p>
                         </td>
                         <td class="text-left" style="margin-bottom: 0; color: #007bff;">

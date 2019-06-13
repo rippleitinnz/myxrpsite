@@ -36,7 +36,7 @@
             <tr
               scope="row"
               v-for="a in xrpMetricDay.stats.slice().reverse().splice(xrpMetricDay.index,1)"
-              v-bind:key="a.date"
+              v-bind:key="`AAA-${a.date}`"
             >
               <td
                 class="text-center"
