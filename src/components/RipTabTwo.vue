@@ -130,17 +130,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="row in xrpMetricsAll.stats" v-bind:key="row.date">
+                      <tr scope="row" v-for="stat in xrpMetricsAll.stats" v-bind:key="stat.date">
                         <td></td>
                         <td
                           class="text-left"
-                        >{{ new Date(Date.parse(row.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
-                        <td class="text-right">{{ row.metric.ledger_count }}</td>
-                        <td class="text-right">{{ (row.metric.ledger_interval * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ row.metric.transaction_count }}</td>
-                        <td class="text-right">{{ (row.metric.tx_per_ledger * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ row.metric.accounts_created }} &nbsp; &nbsp;</td>
-                        <td class="text-right"> {{ total(row.metric.accounts_created) }}&nbsp; &nbsp;</td>
+                        >{{ new Date(Date.parse(stat.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
+                        <td class="text-right">{{ stat.metric.ledger_count }}</td>
+                        <td class="text-right">{{ (stat.metric.ledger_interval * 1).toFixed(5)}}</td>
+                        <td class="text-right">{{ stat.metric.transaction_count }}</td>
+                        <td class="text-right">{{ (stat.metric.tx_per_ledger * 1).toFixed(5)}}</td>
+                        <td class="text-right">{{ stat.metric.accounts_created }} &nbsp; &nbsp;</td>
+                        <td class="text-right"> {{ total(stat.metric.accounts_created) }}&nbsp; &nbsp;</td>
                       </tr>
                     </tbody>
                   </table>

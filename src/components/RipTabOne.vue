@@ -35,7 +35,7 @@
           <tbody>
             <tr
               scope="row"
-              v-for="a in xrpMetricDay.stats.slice().reverse().splice(index,1)"
+              v-for="a in xrpMetricDay.stats.slice().reverse().splice(xrpMetricDay.index,1)"
               v-bind:key="a.date"
             >
               <td
@@ -56,7 +56,7 @@
               <td
                 class="text-center"
                 style="font-size: 13px;"
-              >{{ (xrpData.data.total* 1).toFixed(0) }} xrp</td>
+              >{{ (xrpDataBrief.data.total* 1).toFixed(0) }} xrp</td>
             </tr>
           </tbody>
         </table>
@@ -107,7 +107,7 @@ export default {
       //Rippled Lookup all metrics
       appName: "xrpMetricDay",
       xrpMetricDay: {},
-      xrpData: {}
+      xrpDataBrief: {}
     };
   },
 
@@ -131,12 +131,12 @@ export default {
     //rippled lookup xrp sales
     window
       .fetch("https://data.ripple.com/v2/network/external_markets")
-      .then(w => {
-        return w.json();
+      .then(n => {
+        return n.json();
       })
       .then(data => {
         // Set it to the Vue App data
-        this.xrpData = data;
+        this.xrpDataBrief= data;
       });
   },
 
@@ -157,8 +157,8 @@ export default {
           this.scryptos = response.data;
           window.console.log(response);
         })
-         .catch(w => {
-          window.console.log(w);
+         .catch(ww => {
+          window.console.log(ww);
         });
     }
   }
