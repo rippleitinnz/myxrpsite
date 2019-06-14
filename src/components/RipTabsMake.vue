@@ -46,6 +46,17 @@
           aria-selected="false"
         >Essential Links</a>
       </li>
+      <li class="nav-item">
+        <a
+          class="nav-link border border-info border-bottom-0"
+          id="testing-tab"
+          data-toggle="tab"
+          href="#testing"
+          role="tab"
+          aria-controls="testing"
+          aria-selected="false"
+        >Testing</a>
+      </li>
     </ul>
   </div>
 </template>

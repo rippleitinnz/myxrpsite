@@ -130,17 +130,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="stat in xrpMetricsAll.stats" v-bind:key="`STATSTAT-${stat.date}`">
+                      <tr scope="row" v-for="row in xrpMetricsAll.stats" :key="row.date">
                         <td></td>
                         <td
                           class="text-left"
-                        >{{ new Date(Date.parse(stat.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
-                        <td class="text-right">{{ stat.metric.ledger_count }}</td>
-                        <td class="text-right">{{ (stat.metric.ledger_interval * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ stat.metric.transaction_count }}</td>
-                        <td class="text-right">{{ (stat.metric.tx_per_ledger * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ stat.metric.accounts_created }} &nbsp; &nbsp;</td>
-                        <td class="text-right"> {{ total(stat.metric.accounts_created) }}&nbsp; &nbsp;</td>
+                        >{{ new Date(Date.parse(row.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
+                        <td class="text-right">{{ row.metric.ledger_count }}</td>
+                        <td class="text-right">{{ (row.metric.ledger_interval * 1).toFixed(5)}}</td>
+                        <td class="text-right">{{ row.metric.transaction_count }}</td>
+                        <td class="text-right">{{ (row.metric.tx_per_ledger * 1).toFixed(5)}}</td>
+                        <td class="text-right">{{ row.metric.accounts_created }} &nbsp; &nbsp;</td>
+                        <td
+                          class="text-right"
+                        >{{ total(row.metric.accounts_created) }}&nbsp; &nbsp;</td>
                       </tr>
                     </tbody>
                   </table>
@@ -476,7 +478,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="q in validatorsData.validators" v-bind:key="`QQQ-${q.unl}`">
+                      <tr
+                        scope="row"
+                        v-for="q in validatorsData.validators"
+                        v-bind:key="`QQQ-${q.unl}`"
+                      >
                         <td class="Tab4">
                           <a
                             v-bind:href="'https://xrpcharts.ripple.com/#/validators/' + q.validation_public_key"
@@ -558,7 +564,6 @@ export default {
   },
   //--------------------------
 
-    
 
   mounted() {
     //rippled Lookup all validators
@@ -583,7 +588,7 @@ export default {
         this.xrpMetrics = data;
       });
 
-       //rippled Lookup all fees
+    //rippled Lookup all fees
     window
       .fetch(
         "https://data.ripple.com/v2/network/fees?interval=day&descending=true&limit=100"
@@ -630,19 +635,18 @@ export default {
         this.xrpBurn = data;
       });
   },
+
   methods: {
-  	total (val) {
-    	runningTotal.push(val);
-      
-    	return runningTotal.reduce((acc, curr) => acc + curr, 0);
+    total(val) {
+      runningTotal.push(val);
+
+      return runningTotal.reduce((acc, curr) => acc + curr, 0);
     }
   },
-  
-  created () {
-  	window
-      .fetch(
-        "https://data.ripple.com/v2/stats?interval=week&limit=400"
-      )
+
+  created() {
+    window
+      .fetch("https://data.ripple.com/v2/stats?interval=week&limit=10")
       .then(x => {
         return x.json();
       })
@@ -652,12 +656,7 @@ export default {
       });
   },
 
-//end of mounted
-
-
+  //end of mounted
 };
-
-
-
 </script>
 

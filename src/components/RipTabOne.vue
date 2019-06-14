@@ -35,7 +35,7 @@
           <tbody>
             <tr
               scope="row"
-              v-for="a in xrpMetricDay.stats.slice().reverse().splice(xrpMetricDay.index,1)"
+              v-for="a in xrpMetricDay.stats.slice().reverse().splice(index,1)"
               v-bind:key="`AAA-${a.date}`"
             >
               <td
@@ -85,10 +85,10 @@
   <!-- End of Tab1-->
 </template>
 <script>
-import axios from "axios";
+
 import RipCharts from "./RipCharts";
 import RipCharts2 from "./RipCharts2";
-let apiIntervals;
+
 //---------------------------------
 export default {
   name: "sXRP",
@@ -99,10 +99,7 @@ export default {
 
   data: function() {
     return {
-      //cryptoprices
-      scryptos: {
-        sXRP: {}
-      },
+   
 
       //Rippled Lookup all metrics
       appName: "xrpMetricDay",
@@ -112,10 +109,7 @@ export default {
   },
 
   mounted() {
-    this.fetchSRates();
-
-    // Set interval at 20 seconds (re-run)
-    apiIntervals = setInterval(this.fetchSRates, 20 * 1000);
+   
 
     //rippled Lookup all stats
     window
@@ -140,29 +134,7 @@ export default {
       });
   },
 
-  //end of mounted
-  destroyed() {
-    clearInterval(apiIntervals);
-  },
-
-  //------------------------------------------------
-  methods: {
-    //rates data short
-    fetchSRates() {
-      axios
-        .get(
-          "https://min-api.cryptocompare.com/data/pricemulti?fsyms=XRP&tsyms=USD"
-        )
-        .then(response => {
-          this.scryptos = response.data;
-          window.console.log(response);
-        })
-         .catch(ww => {
-          window.console.log(ww);
-        });
-    }
-  }
-
+ 
   //end of methods
 };
 </script>

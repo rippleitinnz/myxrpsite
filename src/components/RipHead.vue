@@ -81,8 +81,8 @@ export default {
 
   mounted() {
     this.fetchRates();
-    // Set interval at 20 seconds (re-run)
-    apiInterval = setInterval(this.fetchRates, 20 * 1000);
+    // Set interval at 60 seconds (re-run)
+    apiInterval = setInterval(this.fetchRates, 60 * 1000);
 
     // Connect to server status
     this.serverStateHandler();

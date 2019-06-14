@@ -12,6 +12,7 @@
             <RipTabTwo/>
             <RipTabThree/>
             <RipTabFour/>
+            <RipTabTest/>
 
             <!-- Tab Componenets End -->
           </div>
@@ -28,6 +29,7 @@ import RipTabOne from "./RipTabOne";
 import RipTabTwo from "./RipTabTwo";
 import RipTabThree from "./RipTabThree";
 import RipTabFour from "./RipTabFour";
+import RipTabTest from "./RipTabTest";
 
 export default {
    components: {
@@ -35,7 +37,8 @@ export default {
     RipTabOne,
     RipTabTwo,
     RipTabThree,
-    RipTabFour
+    RipTabFour,
+    RipTabTest
   },
   
   data: function() {
