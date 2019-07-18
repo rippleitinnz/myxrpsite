@@ -5,8 +5,9 @@
     id="XRPL"
     role="tabpanel"
     aria-labelledby="XRPL-tab"
+    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
-    <div class="card" style="width: 885px; margin-top: 25px;">
+    <div class="card" style="width: 885px; margin: 15px;">
       <div id="accordian">
         <!--Card Metrics -->
         <div class="card-header" id="headingMetrics" align="left">
@@ -64,11 +65,13 @@
                         <td
                           class="text-left"
                         >{{ new Date(Date.parse(p.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
-                        <td class="text-right">{{ p.metric.ledger_count }}</td>
+                        <td class="text-right">{{ p.metric.ledger_count.toLocaleString() }}</td>
                         <td class="text-right">{{ (p.metric.ledger_interval * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ p.metric.transaction_count }}</td>
+                        <td class="text-right">{{ p.metric.transaction_count.toLocaleString() }}</td>
                         <td class="text-right">{{ (p.metric.tx_per_ledger * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ p.metric.accounts_created }} &nbsp; &nbsp;</td>
+                        <td
+                          class="text-right"
+                        >{{ p.metric.accounts_created .toLocaleString() }} &nbsp; &nbsp;</td>
                       </tr>
                     </tbody>
                   </table>
@@ -110,7 +113,7 @@
         >
           <div class="card-body">
             <div class="row">
-              <div v-if="!xrpMetricsAll.stats">Loading...</div>
+              <div v-if="!$parent.xrpMetricsAll.stats">Loading...</div>
               <div v-else>
                 <div
                   class="table-responsive"
@@ -130,19 +133,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr scope="row" v-for="row in xrpMetricsAll.stats" :key="row.date">
+                      <tr scope="row" v-for="row in $parent.xrpMetricsAll.stats" :key="row.date">
                         <td></td>
                         <td
                           class="text-left"
                         >{{ new Date(Date.parse(row.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
-                        <td class="text-right">{{ row.metric.ledger_count }}</td>
+                        <td class="text-right">{{ row.metric.ledger_count.toLocaleString() }}</td>
                         <td class="text-right">{{ (row.metric.ledger_interval * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ row.metric.transaction_count }}</td>
+                        <td class="text-right">{{ row.metric.transaction_count.toLocaleString() }}</td>
                         <td class="text-right">{{ (row.metric.tx_per_ledger * 1).toFixed(5)}}</td>
-                        <td class="text-right">{{ row.metric.accounts_created }} &nbsp; &nbsp;</td>
                         <td
                           class="text-right"
-                        >{{ total(row.metric.accounts_created) }}&nbsp; &nbsp;</td>
+                        >{{ row.metric.accounts_created.toLocaleString() }} &nbsp; &nbsp;</td>
+                        <td class="text-right">{{ sumCreated(row).toLocaleString() }}&nbsp; &nbsp;</td>
                       </tr>
                     </tbody>
                   </table>
@@ -209,11 +212,11 @@
                       >
                         <td>{{ new Date(Date.parse(k.date)).toLocaleDateString('en-NZ',{ weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
                         <td></td>
-                        <td class="text-center">{{ 100000000000 - k.total }}</td>
+                        <td class="text-center">{{ (100000000000 - k.total).toLocaleString() }}</td>
                         <td></td>
-                        <td class="text-center">{{ k.total }}</td>
+                        <td class="text-center">{{ (k.total *1).toLocaleString() }}</td>
                         <td></td>
-                        <td class="text-center">{{ (100000000000 - k.total) / 100000000000 }}</td>
+                        <td class="text-center">{{ ((100000000000 - k.total) / 100000000000) }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -246,11 +249,11 @@
                         <td
                           class="text-left"
                         >{{ new Date(Date.parse(d.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
-                        <td class="text-right">{{ d.tx_count }}</td>
+                        <td class="text-right">{{ d.tx_count.toLocaleString() }}</td>
                         <td class="text-right">{{ d.min }}</td>
                         <td class="text-right">{{ d.max }}</td>
                         <td class="text-right">{{ d.avg }}</td>
-                        <td class="text-right">{{ d.total}} &nbsp; &nbsp;</td>
+                        <td class="text-right">{{ d.total }} &nbsp; &nbsp;</td>
                       </tr>
                     </tbody>
                   </table>
@@ -317,7 +320,7 @@
                         <td/>
                         <td>Last 24 hours</td>
                         <td/>
-                        <td>{{ (xrpData.data.total* 1).toFixed(0) }} xrp</td>
+                        <td>{{ ((xrpData.data.total* 1).toFixed(0)*1).toLocaleString() }} xrp</td>
                       </tr>
                     </tbody>
                   </table>
@@ -328,12 +331,20 @@
                 >
                   <table class="table table-striped">
                     <thead>
+                     
                       <tr class="colorrow" style="width: 885px;">
+                         <th/>
                         <th class="text-left" scope="col">Exchange</th>
-                        <th class="text-left" scope="col">Volume</th>
-                        <th class="text-left" scope="col">Trades</th>
-                        <th class="text-left" scope="col">Avg Trade</th>
-                        <th class="text-left" scope="col">Against</th>
+                        <th/>
+                        <th class="text-right" scope="col">Volume</th>
+                        <th/>
+                        <th/>
+                        <th class="text-right" scope="col">Trades</th>
+                        <th/>
+                        <th class="text-right" scope="col">Avg Trade</th>
+                        <th/>
+                        <th class="text-right" scope="col">Against</th>
+                        <th/>
                       </tr>
                     </thead>
                     <tbody>
@@ -342,11 +353,22 @@
                         v-for="w in xrpData.data.components.slice().sort()"
                         v-bind:key="`WWW-${w.base_volume}`"
                       >
-                        <td>{{ w.source }}</td>
-                        <td>{{ (w.base_volume * 1).toFixed(5) }}</td>
-                        <td>{{ w.count }}</td>
-                        <td>{{ (w.base_volume / w.count).toFixed(5) }}</td>
-                        <td>{{ w.counter_currency }}</td>
+                        <td/>
+                        <td class="text-left">{{ w.source }}</td>
+                        <td/>
+                        <td
+                          class="text-right"
+                        >{{ (((w.base_volume * 1).toFixed(5))*1).toLocaleString() }}</td>
+                        <td/>
+                        <td/>
+                        <td class="text-right">{{ w.count.toLocaleString() }}</td>
+                        <td/>
+                        <td
+                          class="text-right"
+                        >{{ ((w.base_volume / w.count).toFixed(5)).toLocaleString() }}</td>
+                        <td/>
+                        <td class="text-right">{{ w.counter_currency }}</td>
+                        <td/>
                       </tr>
                     </tbody>
                   </table>
@@ -410,10 +432,10 @@
                         v-bind:key="`ZZZ-${z.date}`"
                       >
                         <td>{{ new Date(Date.parse(z.date)).toLocaleDateString('en-NZ',{ weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'}).replace(',',' ') }}</td>
-                        <td>{{ z.total }}</td>
-                        <td>{{ z.distributed }}</td>
-                        <td>{{ z.undistributed }}</td>
-                        <td>{{ z.escrowed }}</td>
+                        <td>{{ (z.total*1).toLocaleString() }}</td>
+                        <td>{{ (z.distributed*1).toLocaleString() }}</td>
+                        <td>{{ (z.undistributed*1).toLocaleString()}}</td>
+                        <td>{{ (z.escrowed*1).toLocaleString() }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -481,7 +503,7 @@
                       <tr
                         scope="row"
                         v-for="q in validatorsData.validators"
-                        v-bind:key="`QQQ-${q.unl}`"
+                        v-bind:key= "q.unl"
                       >
                         <td class="Tab4">
                           <a
@@ -506,7 +528,7 @@
                         <td class="Tab4">
                           <p
                             style="text-align: center; color: darkgreen; margin-bottom: 0; font-size: 11px;"
-                            v-if="`QQ-${q.unl}`"
+                            v-if= "q.unl"
                           >yes</p>
                         </td>
                         <td class="text-left" style="margin-bottom: 0; color: #007bff;">
@@ -541,7 +563,6 @@
 </template>
 
 <script>
-let runningTotal = [];
 export default {
   data: function() {
     return {
@@ -550,8 +571,6 @@ export default {
       validatorsData: {},
 
       xrpMetrics: {},
-
-      xrpMetricsAll: {},
 
       xrpFees: {},
 
@@ -563,7 +582,6 @@ export default {
     };
   },
   //--------------------------
-
 
   mounted() {
     //rippled Lookup all validators
@@ -637,26 +655,46 @@ export default {
   },
 
   methods: {
-    total(val) {
-      runningTotal.push(val);
-
-      return runningTotal.reduce((acc, curr) => acc + curr, 0);
+    sumCreated(row) {
+      // No need to build a new array or total in a global,
+      // we'll just lookup the current index in the stats array (indexOf)
+      const currentRowIndex = this.$parent.xrpMetricsAll.stats.indexOf(row);
+      return this.$parent.xrpMetricsAll.stats
+        .slice(currentRowIndex)
+        .reduce((a, b) => {
+          return a + b.metric.accounts_created;
+        }, 0);
     }
   },
 
   created() {
     window
-      .fetch("https://data.ripple.com/v2/stats?interval=week&limit=10")
+      .fetch(
+        "https://data.ripple.com/v2/stats?descending=true&interval=week&limit=400"
+      )
       .then(x => {
         return x.json();
       })
       .then(data => {
         // Set it to the Vue App data
-        this.xrpMetricsAll = data;
+        this.$parent.xrpMetricsAll = Object.assign(data, {
+          // Use data, but overwrite the stats element with a sorted version
+          stats: data.stats
+            .sort((a, b) => {
+              if (a.date > b.date) return -1;
+              if (a.date < b.date) return 1;
+              return 0;
+            })
+            .map(a => {
+              // Chain a mapper, convert all date fields to actual JS date objects,
+              // so we can call date methods in the Vue template on the date field
+              return Object.assign(a, {
+                date: new Date(a.date)
+              });
+            })
+        });
       });
-  },
-
-  //end of mounted
+  }
 };
 </script>
 

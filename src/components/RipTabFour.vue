@@ -4,8 +4,9 @@
     id="links"
     role="tabpanel"
     aria-labelledby="links-tab"
+    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
-    <div class="card" style="width: 885px;margin-top: 25px;">
+    <div class="card" style="width: 885px;margin: 15px;;">
       <div class="photo">
         <div style="text-align: left; margin: 30px 0px 30px 30px; font-size: 16px;">
           <div class="row">
@@ -128,6 +129,7 @@
           </div>
           <br>
 
+
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
               <div class="fa-xs">
@@ -146,24 +148,8 @@
             </div>
           </div>
           <br>
-
-          <div class="row">
-            <div style="margin-top: 3px; margin-left: 30px;">
-              <div class="fa-xs">
-                <i class="fas fa-cog fa-spin"></i>
-              </div>
-            </div>
-            <div style="margin-left:30px;">
-              <a href="https://ripple.com" target="_blank" style="text-decoration:none;">
-                <b>
-                  <i>Ripple</i>
-                </b>
-              </a> - the company
-            </div>
-          </div>
-          <br>
-
-          <div class="row">
+           
+              <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
               <div class="fa-xs">
                 <i class="fas fa-cog fa-spin"></i>
@@ -171,7 +157,7 @@
             </div>
             <div style="margin-left:30px;">
               <a
-                href="https://developers.ripple.com/build-run-rippled-ubuntu.html"
+                href="https://xrpl.org/build-run-rippled-ubuntu.html"
                 target="_blank"
                 style="text-decoration:none;"
               >
@@ -181,7 +167,44 @@
               </a>
             </div>
           </div>
+
+        <br>
+
+              <div class="row">
+            <div style="margin-top: 3px; margin-left: 30px;">
+              <div class="fa-xs">
+                <i class="fas fa-cog fa-spin"></i>
+              </div>
+            </div>
+            <div style="margin-left:30px;">
+              All the latest on the XRP Ledger brought to you 
+              
+            <b><i>  <a
+                href="https://xrpl.org/blog/"
+                target="_blank"
+                style="text-decoration:none;"
+              > by the xrp ledger blog team</a></i> </b>
+            </div>
+          </div>
+  
           <br>
+           <div class="row">
+            <div style="margin-top: 3px; margin-left: 30px;">
+              <div class="fa-xs">
+                <i class="fas fa-cog fa-spin"></i>
+              </div>
+            </div>
+            <div style="margin-left:30px;">
+              <a href="https://xrpl.org/" target="_blank" style="text-decoration:none;">
+                <b>
+                  <i>XRP Ledger</i>
+                </b>
+              </a> - Powering the Internet of Value - an open source contributable portal for developers and users
+            </div>
+          </div>
+          
+          
+                  <br>
         </div>
       </div>
     </div>

@@ -1,27 +1,25 @@
 <template>
+  <div id="app">
+    <RipHead/>
 
- <div id="app">
-      <RipHead />
-      <RipBody />
-      <RipFooter />
+    <RipBody/>
+
+    <RipFooter/>
   </div>
-
 </template>
 
 <script>
-import RipHead from './components/RipHead';
-import RipBody from './components/RipBody';
-import RipFooter from './components/RipFooter';
+import RipHead from "./components/RipHead";
+import RipBody from "./components/RipBody";
+import RipFooter from "./components/RipFooter";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    RipHead, 
-    RipBody, 
+    RipHead,
+    RipBody,
     RipFooter
   }
-}
-
-
+};
 </script>
 

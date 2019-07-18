@@ -12,9 +12,10 @@
             <RipTabTwo/>
             <RipTabThree/>
             <RipTabFour/>
-            <RipTabTest/>
+            <RipTabFive/>
+     
 
-            <!-- Tab Componenets End -->
+            <!-- Tab Componnets End -->
           </div>
         </div>
       </div>
@@ -29,7 +30,8 @@ import RipTabOne from "./RipTabOne";
 import RipTabTwo from "./RipTabTwo";
 import RipTabThree from "./RipTabThree";
 import RipTabFour from "./RipTabFour";
-import RipTabTest from "./RipTabTest";
+import RipTabFive from "./RipTabFive";
+
 
 export default {
    components: {
@@ -38,11 +40,17 @@ export default {
     RipTabTwo,
     RipTabThree,
     RipTabFour,
-    RipTabTest
+    RipTabFive,
+
   },
   
   data: function() {
-    return {};
+    return {
+
+   
+       xrpMetricsAll: {},
+     
+    };
   } //end of return
 };
 </script>

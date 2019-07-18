@@ -4,8 +4,9 @@
     id="rippleitinnz"
     role="tabpanel"
     aria-labelledby="rippleitinnz-tab"
+    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
-    <div class="card" style="width: 885px;margin-top: 25px;">
+    <div class="card" style="width: 885px;margin: 15px;">
       <div id="accordian2">
         <div class="card-header" id="headingFive" align="left">
           <h5 class="mb-0">

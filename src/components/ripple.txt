@@ -1,0 +1,6 @@
+[validation_public_key]
+nHUcQnmEbCNq4uhntFudzfrZV8P5WLoBrR5h3R9jAd621Aaz1pSy
+
+[domain]
+rippleitin.nz
+

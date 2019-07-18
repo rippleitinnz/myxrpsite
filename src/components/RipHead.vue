@@ -71,6 +71,7 @@ export default {
   data: function() {
     return {
       //cryptoprices
+     
       cryptos: {
         XRP: {}
       },
@@ -347,6 +348,12 @@ span.cursor {
   margin-left: 25px;
   text-align: left;
 }
+.birch {
+    @import url(https://fonts.googleapis.com/css?family=Avenir);
+
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
 
 .ledger {
   font-size: 11px;
@@ -491,6 +498,7 @@ span.cursor {
 
 .nav-tabs .nav-link:not(.active) {
   border-color: transparent !important;
+  color: #235281;
 }
 
 .nav-tabs .nav-item.show .nav-link,

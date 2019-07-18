@@ -18,7 +18,7 @@ export default {
     return {
       //chart
       url: "https://data.ripple.com/v2/",
-      days: "45",
+      days: "53",
       data: {
         Xaxis: [],
         Yaxis: []
@@ -26,7 +26,7 @@ export default {
       ChartOptions: {
         chart: {
           id: "vuechart-example",
-          toolbar: {
+         toolbar: {
             show: false
           }
         },
@@ -36,8 +36,10 @@ export default {
           lineCap: "butt",
           colors: undefined
         },
+       
 
-              fill: {
+        
+                fill: {
           type: "gradient",
           gradient: {
             type: "vertical",
@@ -63,7 +65,7 @@ export default {
           enabled: false
         },
 
-        xaxis: {
+                xaxis: {
           categories: [],
           labels: {
             show: true,
@@ -95,7 +97,7 @@ export default {
       },
       series: [
         {
-          name: "Total Transactions",
+          name: "New Accounts Created by Week",
           data: []
         }
       ]
@@ -104,9 +106,9 @@ export default {
   mounted() {
     window;
     //rippled Lookup all stats
-    fetch(this.url + "stats?descending=true&interval&limit=" + this.days)
-      .then(response => {
-        return response.json();
+    fetch(this.url + "stats?descending=true&interval=week&limit=" + this.days)
+      .then(p => {
+        return p.json();
       })
 
       .then(json => {
@@ -122,19 +124,19 @@ export default {
       var i;
       for (i = 0; i < days; i++) {
         var date = this.data.stats[i].date;
-        date = moment(date).format("D MMM");
+        date = moment(date).format("DD MMM YY");
         this.ChartOptions.xaxis.categories.push(date);
 
-        var stat = this.data.stats[i].metric.transaction_count;
+        var stat = this.data.stats[i].metric.accounts_created;
         this.series[0].data.push(stat);
       }
       this.ChartOptions.xaxis.categories.reverse();
-      this.series[0].data.reverse().toLocaleString();
+      this.series[0].data.reverse();
     },
     yas() {
       var i;
       for (i = 0; i < this.days; i++) {
-        var stat = this.data.stats[i].metric.transaction_count;
+        var stat = this.data.stats[i].metric.accounts_created;
         this.ChartOptions.series.data.push(stat);
         return stat;
       }
@@ -150,4 +152,3 @@ export default {
   }
 };
 </script>
-

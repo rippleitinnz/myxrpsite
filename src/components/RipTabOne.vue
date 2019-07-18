@@ -7,7 +7,7 @@
     style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
     <!-- top of base info -->
-    <div class="container-fluid" align="left" style="width: 860px; margin-top: 25px; height: auto;">
+    <div class="container-fluid" align="left" style="width: 860px; margin: 15px; height: auto;">
       <div style="margin-left:70px;">
         <div>
           <img
@@ -21,7 +21,7 @@
           style="border-left: 0; border-right: 0; "
         >
           <thead>
-            <tr style="color: darkblue; font-size:12px;">
+            <tr style="color: #235281; font-size:12px;">
               <th class="text-center" scope="col">Date</th>
               <th class="text-center" scope="col">Ledger Count</th>
               <th class="text-center" scope="col">Ledger Interval</th>
@@ -47,7 +47,10 @@
                 class="text-center"
                 style="font-size: 13px;"
               >{{ (a.metric.ledger_interval * 1).toFixed(5)}}</td>
-              <td class="text-center" style="font-size: 13px;">{{ a.metric.transaction_count }}</td>
+              <td
+                class="text-center"
+                style="font-size: 13px;"
+              >{{ a.metric.transaction_count.toLocaleString() }}</td>
               <td
                 class="text-center"
                 style="font-size: 13px;"
@@ -56,51 +59,73 @@
               <td
                 class="text-center"
                 style="font-size: 13px;"
-              >{{ (xrpDataBrief.data.total* 1).toFixed(0) }} xrp</td>
+              >{{ ((xrpDataBrief.data.total* 1).toFixed(0)*1).toLocaleString() }} xrp</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="col">
-        <div align="center" style="margin-left: -20px;">
-          <p style="font-size: 16px; color: darkblue; margin-left: 20px;">New XRPL Accounts Created</p>
-          <RipCharts/>
-          <p style="font-size: 16px; color: darkblue; margin-left: 20px;">XRPL Total Transactions</p>
-          <RipCharts2/>
-        </div>
+        <div align="center" style="margin-left: -25px;">
+          <div style="border: 0.3px solid #5bc0de ;border-radius: 10px;margin-right: -25px;">
+            <p
+              style="font-size: 14px; color:#235281;; margin-top: 15px;"
+            >New XRPL Accounts Created - by Day - Last 45 Days</p>
 
-        <div class="col">
-          <div align="center">
-            <p style="font-size: 16px; color: darkblue;margin-left: 20px;">Last 45 Days</p>
+            <RipCharts/>
+          </div>
+          <div style="border: 0.3px solid #5bc0de ;border-radius: 10px; margin-right: -25px;">
+            <p
+              style="font-size: 14px; color: #235281;;margin-top: 15px;"
+            >New XRPL Accounts Created - by Week - Last 12 months</p>
+            <Chart/>
+          </div>
+          <div style="border: 0.3px solid #5bc0de ;border-radius: 10px;margin-right: -25px;">
+            <p
+              style="font-size: 14px; color: #235281;;margin-top: 15px;"
+            >XRPL Total Transactions - by Day - Last 45 Days</p>
+
+            <RipCharts2/>
+          </div>
+          <div style="margin-right: -25px;font-size: 9px; color: #235281; margin-bottom:-14px;">
+          DISCLAIMER: All statistics quoted on this site may be subject to change without notice and no guarantee can be given as to their accuracy.
           </div>
         </div>
       </div>
     </div>
-    <!-- top of base info -->
   </div>
+
+  <!-- top of base info -->
 
   <!--end of Card 4-->
 
   <!-- End of Tab1-->
 </template>
 <script>
-
+Date.prototype.getWeek = function() {
+  var d = new Date(
+    Date.UTC(this.getFullYear(), this.getMonth(), this.getDate())
+  );
+  var dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+};
 import RipCharts from "./RipCharts";
 import RipCharts2 from "./RipCharts2";
+import Chart from "./Chart";
 
 //---------------------------------
 export default {
   name: "sXRP",
   components: {
     RipCharts,
-    RipCharts2
+    RipCharts2,
+    Chart
   },
 
   data: function() {
     return {
-   
-
       //Rippled Lookup all metrics
       appName: "xrpMetricDay",
       xrpMetricDay: {},
@@ -109,11 +134,10 @@ export default {
   },
 
   mounted() {
-   
-
     //rippled Lookup all stats
     window
       .fetch("https://data.ripple.com/v2/stats?descending=true&limit=2")
+
       .then(a => {
         return a.json();
       })
@@ -130,11 +154,10 @@ export default {
       })
       .then(data => {
         // Set it to the Vue App data
-        this.xrpDataBrief= data;
+        this.xrpDataBrief = data;
       });
-  },
+  }
 
- 
   //end of methods
 };
 </script>

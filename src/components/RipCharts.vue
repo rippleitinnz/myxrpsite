@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VueApexCharts width="850" height="200" type="bar" :options="ChartOptions" :series="series"></VueApexCharts>
+    <VueApexCharts width="850" height="250" type="bar" :options="ChartOptions" :series="series"></VueApexCharts>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import VueApexCharts from "vue-apexcharts";
 import * as moment from "moment";
 
 export default {
-  name: "Vue Chart",
+  name: "VueChart",
   components: { VueApexCharts },
 
   data() {
@@ -36,18 +36,27 @@ export default {
           lineCap: "butt",
           colors: undefined
         },
+
         fill: {
           type: "gradient",
           gradient: {
-            shade: "dark",
-            type: "horizontal",
-            shadeIntensity: 0.7,
-            gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
-            inverseColors: true,
+            type: "vertical",
+            shadeIntensity: 1,
             opacityFrom: 1,
             opacityTo: 1,
-            stops: [0, 75, 100],
-            colorStops: []
+
+            colorStops: [
+              {
+                offset: 10,
+                color: "#235281",
+                opacity: 1
+              },
+              {
+                offset: 90,
+                color: "#5bc0de",
+                opacity: 1
+              }
+            ]
           }
         },
         dataLabels: {
@@ -57,14 +66,36 @@ export default {
         xaxis: {
           categories: [],
           labels: {
-            tickAmount: 8,
-            hideOverlappingLabels: true
+            show: true,
+            rotate: -60,
+            rotateAlways: false,
+            hideOverlappingLabels: true,
+            showDuplicates: false,
+            trim: true,
+            minHeight: undefined,
+            maxHeight: undefined,
+            style: {
+              colors: "#235281",
+              fontSize: "10px",
+              fontFamily: '"Avenir",Helvetica, Arial, sans-serif',
+              cssClass: "apexcharts-xaxis-label"
+            }
+          }
+        },
+        yaxis: {
+          labels: {
+            style: {
+              color: "#235281",
+              fontSize: "10px",
+              fontFamily: '"Avenir",Helvetica, Arial, sans-serif',
+              cssClass: "apexcharts-yaxis-label"
+            }
           }
         }
       },
       series: [
         {
-          name: "New Accounts Created",
+          name: "New Accounts Created by Day",
           data: []
         }
       ]
