@@ -2,52 +2,7 @@
 <!-- vue root -->
 <div id="apparatus" v-cloak>
 
-<!-- fixed header -->
-<header class="header-wrap">
-  <div class="header-row flex-row flex-middle flex-space">
-    <div class="if-small">
-      <div class="form-input dark">
-        <div class="push-right">🔎</div>
-        <input type="text" v-model="search" placeholder="Search token..." />
-      </div>
-    </div>
-    <div class="text-primary if-medium">
-      <h1 class="text-nowrap text-condense shadow-text">Crypto 24h Change</h1>
-    </div>
-    <div class="flex-row flex-middle">
-      <div class="dropdown">
-        <div class="form-input text-nowrap shadow-box">▼ {{ limit }}</div>
-        <ul>
-          <li @click="setLimit( 0 )"><span class="text-faded">Show:</span> All</li>
-          <li @click="setLimit( 10 )"><span class="text-faded">Show:</span> 10</li>
-          <li @click="setLimit( 20 )"><span class="text-faded">Show:</span> 20</li>
-          <li @click="setLimit( 50 )"><span class="text-faded">Show:</span> 50</li>
-          <li @click="setLimit( 100 )"><span class="text-faded">Show:</span> 100</li>
-        </ul>
-      </div>
-      <div class="dropdown">
-        <div class="form-input text-nowrap shadow-box">▼ {{ sortLabel }}</div>
-        <ul>
-          <li @click="sortBy( 'token', 'asc' )"><span class="text-faded">Sort:</span> Token</li>
-          <li @click="sortBy( 'close', 'desc' )"><span class="text-faded">Sort:</span> Price</li>
-          <li @click="sortBy( 'assetVolume', 'desc' )"><span class="text-faded">Sort:</span> Volume</li>
-          <li @click="sortBy( 'percent', 'desc' )"><span class="text-faded">Sort:</span> Percent</li>
-          <li @click="sortBy( 'change', 'desc' )"><span class="text-faded">Sort:</span> Change</li>
-          <li @click="sortBy( 'trades', 'desc' )"><span class="text-faded">Sort:</span> Trades</li>
-        </ul>
-      </div>
-      <div class="dropdown">
-        <div class="form-input text-nowrap shadow-box">▼ {{ asset }}</div>
-        <ul>
-          <li @click="filterAsset( 'BTC' )"><span class="text-faded">Asset:</span> BTC</li>
-          <li @click="filterAsset( 'ETH' )"><span class="text-faded">Asset:</span> ETH</li>
-          <li @click="filterAsset( 'BNB' )"><span class="text-faded">Asset:</span> BNB</li>
-          <li @click="filterAsset( 'USDT' )"><span class="text-faded">Asset:</span> USDT</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</header>
+
 
 <!-- price list grid -->
 <main class="main-wrap">

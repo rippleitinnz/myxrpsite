@@ -25,7 +25,7 @@
               aria-controls="collapseFive"
             >
               <div class="picright">
-                <img src="../assets/xrpsm.png">
+                <img src="../assets/xrpsm.png" />
               </div>
             </button>
           </h5>
@@ -73,9 +73,11 @@
                 <span v-if="serverState !== null">{{ serverState.peers }}</span>
               </div>
 
-              <div class="serverst d-none d-sm-block col-sm-3 text-right">Last ledger</div>
-              <div class="serverst d-block d-sm-none col-12 text-left text-muted">Last ledger</div>
-              <div class="serverrt col-12 col-sm-9">
+              <div class="serverst1 d-none d-sm-block col-sm-3 text-right">Last Closed Ledger</div>
+              <div
+                class="serverst1 d-block d-sm-none col-12 text-left text-muted"
+              >Last Closed Ledger</div>
+              <div class="serverrt1 col-12 col-sm-9">
                 <b v-if="serverState !== null">{{ serverState.validated_ledger.seq }}</b>
               </div>
 
@@ -118,7 +120,7 @@
               aria-controls="collapseSix"
             >
               <div class="picright">
-                <img src="../assets/xrpsm.png">
+                <img src="../assets/xrpsm.png" />
               </div>
             </button>
           </h5>
@@ -134,8 +136,8 @@
             <div class="row">
               <div style="font-size: 1.1em; text-align: left;" v-if="serverState !== null">
                 <pre>{{ serverState }}</pre>
-                <br>
-                <br>
+                <br />
+                <br />
               </div>
             </div>
           </div>
@@ -158,7 +160,7 @@
               aria-controls="collapseSeven"
             >
               <div class="picright">
-                <img src="../assets/xrpsm.png">
+                <img src="../assets/xrpsm.png" />
               </div>
             </button>
           </h5>
@@ -247,7 +249,7 @@
               aria-controls="collapseEight"
             >
               <div class="picright">
-                <img src="../assets/xrpsm.png">
+                <img src="../assets/xrpsm.png" />
               </div>
             </button>
           </h5>
@@ -305,15 +307,89 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <!--  <div class="tab-pane h-100 p-3 border border-info" id="settings" role="tabpanel" aria-labelledby="settings-tab">Settings tab content...</div>-->
+        <!-- card vote-->
+
+        <div class="card-header" id="heading12" align="left">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapse12"
+              aria-expanded="false"
+              aria-controls="collapse12"
+            >Rippleitin Vote History</button>
+            <button
+              class="btn btn-link collapsed float-right"
+              data-toggle="collapse"
+              data-target="#collapse12"
+              aria-expanded="false"
+              aria-controls="collapse12"
+            >
+              <div class="picright">
+                <img src="../assets/xrpsm.png" />
+              </div>
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordian2">
+          <div class="card-body">
+            <div class="row">
+              <div
+                class="table-responsive"
+                style="margin-left: -6px; margin-top: -20px; width: 885px;"
+              >
+                <table class="table table-striped">
+                  <thead>
+                    <tr class="colorrow2" style="width: 885px;">
+                      <th class="text-left" scope="col">&nbsp;</th>
+                      <th class="text-left" scope="col">Name</th>
+                      <th class="text-left" scope="col">XRPL Amendment Status</th>
+                      <th class="text-left" scope="col">&nbsp;</th>
+                      <th class="text-left" scope="col">Our Vote</th>
+                      <th class="text-left" scope="col">&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="hash in Object.keys(featureState)" v-bind:key="hash">
+                      <td class="text-left" scope="col">&nbsp;</td>
+                      <td
+                        class="text-left"
+                        :class="{ 'orange': featureState[hash].count}"
+                      >{{ featureState[hash].name }}</td>
+                      <td
+                        class="text-left"
+                        :class="{ 'orange': featureState[hash].count}"
+                      >{{ featureState[hash].enabled ? 'Enabled' : 'Disabled' }}</td>
+                      <td class="text-left" scope="col">&nbsp;</td>
+                      <td
+                        class="text-left"
+                        :class="{ 'red': featureState[hash].vetoed }"
+                      >{{ featureState[hash].vetoed ? 'Vetoed' : 'Supported' }}</td>
+
+                      <td class="text-left" scope="col">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--vote -->
+      </div>
     </div>
   </div>
+
+  <!--  <div class="tab-pane h-100 p-3 border border-info" id="settings" role="tabpanel" aria-labelledby="settings-tab">Settings tab content...</div>-->
+
   <!--Tab 3 No Cards-->
 </template>
 
 <script>
+
+
 export default {
   data: function() {
     return {
@@ -321,25 +397,33 @@ export default {
       cryptos: {
         XRP: {}
       },
+
+      props: {
+        isTrue: Boolean
+      },
+
       //cryptoprices
       scryptos: {
         sXRP: {}
       },
 
       //Rawdata from my validator
-      serverState: null,
+      serverState: null, //rippleitinnz server
+      featureState: null, //rippleitinz voting
+     
 
       //Rippled Lookup my validator
       appName: "MyVal",
       validatorData: {}
     };
-  }, //end of return
+  },
   //end of data
-  //--------------------------
 
   mounted() {
     // Connect to server status
     this.serverStateHandler();
+
+
     //rippled Lookup my validator
     window
       .fetch(
@@ -354,12 +438,19 @@ export default {
       });
   },
 
+
   methods: {
     //rippled data from my server
+  
     serverStateHandler() {
       const s = new WebSocket("wss://rippleitin.nz");
       s.onmessage = m => {
-        this.serverState = JSON.parse(m.data);
+        const parsedJson = JSON.parse(m.data);
+        if (typeof parsedJson.build_version === "undefined") {
+          this.featureState = parsedJson;
+        } else {
+          this.serverState = parsedJson;
+        }
       };
     }
   }
@@ -367,6 +458,5 @@ export default {
   //end of methods
 };
 </script>
-
 
 

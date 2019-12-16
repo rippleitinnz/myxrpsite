@@ -1,9 +1,9 @@
 <template>
   <div
-    class="tab-pane h-100 p-3 active border border-info rounded-bottom rounded-right"
-    id="entry"
+    class="tab-pane h-100 p-3 border border-info rounded"
+    id="today"
     role="tabpanel"
-    aria-labelledby="entry-tab"
+    aria-labelledby="today-tab"
     style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
     <!-- top of base info -->

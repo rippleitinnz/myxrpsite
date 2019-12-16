@@ -11,6 +11,17 @@
           role="tab"
           aria-controls="entry"
           aria-selected="true"
+        >Xmas</a>
+      </li>
+       <li class="nav-item">
+        <a
+          class="nav-link border border-info border-bottom-0"
+          id="today-tab"
+          data-toggle="tab"
+          href="#today"
+          role="tab"
+          aria-controls="today"
+          aria-selected="false"
         >the XRPL today...</a>
       </li>
       <li class="nav-item">
@@ -56,6 +67,18 @@
           aria-controls="about"
           aria-selected="false"
         >About</a>
+      </li> 
+       <li class="nav-item">
+        <a
+          class="nav-link border border-info border-bottom-0"
+          id="TOML-tab"
+          data-toggle="tab"
+          href="#TOML"
+          role="tab"
+          aria-controls="TOML"
+          aria-selected="false"
+        >   
+                TOML</a>
       </li> 
     </ul>
   </div>

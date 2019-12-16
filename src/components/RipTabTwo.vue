@@ -216,7 +216,7 @@
                         <td></td>
                         <td class="text-center">{{ (k.total *1).toLocaleString() }}</td>
                         <td></td>
-                        <td class="text-center">{{ ((100000000000 - k.total) / 100000000000) }}</td>
+                        <td class="text-center">{{ ((100000000000 - k.total) / 100000000000)*100 }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -609,7 +609,7 @@ export default {
     //rippled Lookup all fees
     window
       .fetch(
-        "https://data.ripple.com/v2/network/fees?interval=day&descending=true&limit=100"
+        "https://data.ripple.com/v2/network/fees?interval=day&descending=true"
       )
       .then(d => {
         return d.json();

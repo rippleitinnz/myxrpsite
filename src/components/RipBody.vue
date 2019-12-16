@@ -7,12 +7,13 @@
 
           <div class="tab-content h-75">
             <!-- Tab Components -->
-
+            <RipTabXmas/>
             <RipTabOne/>
             <RipTabTwo/>
             <RipTabThree/>
             <RipTabFour/>
             <RipTabFive/>
+            <RipTabTOML/>
      
 
             <!-- Tab Componnets End -->
@@ -26,22 +27,24 @@
 <script>
 import axios from "axios";
 import RipTabsMake from "./RipTabsMake";
+import RipTabXmas from "./RipTabXmas";
 import RipTabOne from "./RipTabOne";
 import RipTabTwo from "./RipTabTwo";
 import RipTabThree from "./RipTabThree";
 import RipTabFour from "./RipTabFour";
 import RipTabFive from "./RipTabFive";
-
+import RipTabTOML from "./RipTabTOML";
 
 export default {
    components: {
     RipTabsMake,
+    RipTabXmas,
     RipTabOne,
     RipTabTwo,
     RipTabThree,
     RipTabFour,
     RipTabFive,
-
+    RipTabTOML
   },
   
   data: function() {

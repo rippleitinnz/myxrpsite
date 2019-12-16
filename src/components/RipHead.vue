@@ -71,7 +71,7 @@ export default {
   data: function() {
     return {
       //cryptoprices
-     
+
       cryptos: {
         XRP: {}
       },
@@ -168,8 +168,16 @@ export default {
   border: 1px solid rgb(202, 202, 202);
 }
 
-
-
+.red {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+}
+.orange {
+  color: darkgreen;
+  font-style: italic;
+  font-weight: bold;
+}
 .photo {
   background: url("../assets/fishing.jpg");
   background-size: 900px;
@@ -342,14 +350,26 @@ span.cursor {
   padding: 2px 0 3.75px 0px;
   margin-left: -35px;
 }
+
+.serverst1 {
+  color: RED;
+  padding: 2px 0 3.75px 0px;
+  margin-left: -35px;
+}
 .serverrt {
   color: black;
   padding: 2px 0 3.75px 0px;
   margin-left: 25px;
   text-align: left;
 }
+.serverrt1 {
+  color: red;
+  padding: 2px 0 3.75px 0px;
+  margin-left: 25px;
+  text-align: left;
+}
 .birch {
-    @import url(https://fonts.googleapis.com/css?family=Avenir);
+  @import url(https://fonts.googleapis.com/css?family=Avenir);
 
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   font-weight: 800;

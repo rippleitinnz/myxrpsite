@@ -157,7 +157,7 @@
             </div>
             <div style="margin-left:30px;">
               <a
-                href="https://xrpl.org/build-run-rippled-ubuntu.html"
+                href="https://xrpl.org/run-a-rippled-validator.html"
                 target="_blank"
                 style="text-decoration:none;"
               >
