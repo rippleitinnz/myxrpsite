@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <RipHead/>
-
-    <RipBody/>
-
-    <RipFooter/>
+    <RipHead />
+    <RipBody />
+    <RipFooter />
   </div>
 </template>
 
@@ -22,4 +20,14 @@ export default {
   }
 };
 </script>
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+      overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+}
 
+</style>
