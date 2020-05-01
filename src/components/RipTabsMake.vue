@@ -1,32 +1,24 @@
 <template>
-  <div>
-    <br>
+  <div style="margin-left: 60px;">
+    <br />
+    <br />
     <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+ 
       <li class="nav-item">
         <a
-          class="nav-link active border border-info border-bottom-0"
+          class="cardtabs nav-link active"
           id="entry-tab"
           data-toggle="tab"
           href="#entry"
           role="tab"
           aria-controls="entry"
           aria-selected="true"
-        >Xmas</a>
-      </li>
-       <li class="nav-item">
-        <a
-          class="nav-link border border-info border-bottom-0"
-          id="today-tab"
-          data-toggle="tab"
-          href="#today"
-          role="tab"
-          aria-controls="today"
-          aria-selected="false"
         >the XRPL today...</a>
       </li>
+
       <li class="nav-item">
         <a
-          class="nav-link border border-info border-bottom-0"
+          class="cardtabs nav-link"
           id="XRPL-tab"
           data-toggle="tab"
           href="#XRPL"
@@ -37,7 +29,7 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link border border-info border-bottom-0"
+          class="cardtabs nav-link"
           id="rippleitinnz-tab"
           data-toggle="tab"
           href="#rippleitinnz"
@@ -48,7 +40,7 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link border border-info border-bottom-0"
+          class="cardtabs nav-link"
           id="links-tab"
           data-toggle="tab"
           href="#links"
@@ -57,9 +49,9 @@
           aria-selected="false"
         >Essential Links</a>
       </li>
-     <li class="nav-item">
+      <li class="nav-item">
         <a
-          class="nav-link border border-info border-bottom-0"
+          class="cardtabs nav-link"
           id="about-tab"
           data-toggle="tab"
           href="#about"
@@ -67,19 +59,18 @@
           aria-controls="about"
           aria-selected="false"
         >About</a>
-      </li> 
-       <li class="nav-item">
+      </li>
+      <li class="nav-item">
         <a
-          class="nav-link border border-info border-bottom-0"
+          class="cardtabs nav-link"
           id="TOML-tab"
           data-toggle="tab"
           href="#TOML"
           role="tab"
           aria-controls="TOML"
           aria-selected="false"
-        >   
-                TOML</a>
-      </li> 
+        >TOML</a>
+      </li>
     </ul>
   </div>
 </template>

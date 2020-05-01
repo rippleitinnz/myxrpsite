@@ -23,6 +23,7 @@ export default {
         Xaxis: [],
         Yaxis: []
       },
+      foreColor: "#373d3f",
       ChartOptions: {
         chart: {
           id: "vuechart-example",
@@ -48,12 +49,12 @@ export default {
             colorStops: [
               {
                 offset: 10,
-                color: "#235281",
+                color: "#a5b8d0",
                 opacity: 1
               },
               {
                 offset: 90,
-                color: "#5bc0de",
+                color: "#34558b",
                 opacity: 1
               }
             ]

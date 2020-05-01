@@ -3,20 +3,19 @@
     <div>
       <div class="margtop">
         <div class="container-fluid" align="center" style="width: 950px; margin-bottom: 60px;">
-          <RipTabsMake/>
+          <RipTabsMake />
 
           <div class="tab-content h-75">
             <!-- Tab Components -->
-            <RipTabXmas/>
-            <RipTabOne/>
-            <RipTabTwo/>
-            <RipTabThree/>
-            <RipTabFour/>
-            <RipTabFive/>
-            <RipTabTOML/>
-     
+            <!-- <RipTabXmas /> -->
+            <RipTabOne />
+            <RipTabTwo />
+            <RipTabThree />
+            <RipTabFour />
+            <RipTabFive />
+            <RipTabTOML />
 
-            <!-- Tab Componnets End -->
+            <!-- Tab Components End -->
           </div>
         </div>
       </div>
@@ -27,7 +26,6 @@
 <script>
 import axios from "axios";
 import RipTabsMake from "./RipTabsMake";
-import RipTabXmas from "./RipTabXmas";
 import RipTabOne from "./RipTabOne";
 import RipTabTwo from "./RipTabTwo";
 import RipTabThree from "./RipTabThree";
@@ -36,9 +34,8 @@ import RipTabFive from "./RipTabFive";
 import RipTabTOML from "./RipTabTOML";
 
 export default {
-   components: {
+  components: {
     RipTabsMake,
-    RipTabXmas,
     RipTabOne,
     RipTabTwo,
     RipTabThree,
@@ -46,20 +43,11 @@ export default {
     RipTabFive,
     RipTabTOML
   },
-  
+
   data: function() {
     return {
-
-   
-       xrpMetricsAll: {},
-     
+      xrpMetricsAll: {}
     };
   } //end of return
 };
 </script>
-
-
-
-
-
-

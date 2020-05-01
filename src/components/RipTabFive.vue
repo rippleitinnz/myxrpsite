@@ -1,20 +1,21 @@
 <template>
   <div
-    class="tab-pane h-100 p-3 border border-info rounded"
+    class="cardouter tab-pane h-100 p-3 rounded"
     id="about"
     role="tabpanel"
     aria-labelledby="about-tab"
-    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
+    
   >
-    <div
-      class="card"
-      style="width: 885px;margin: 15px;border: 0.3px solid #5bc0de ;border-radius: 6px;"
-    >
-      <div class="row">
+    
+      <div class="card" style="width: 885px;margin: 15px;">
+        <div class="photo2">
+          <div class="row">
+     
         <div
           class="text-left"
-          style="font-size: 12px; margin-top: 50px; margin-left: 50px; margin-right:50px;"
+          style="font-size: 12px; margin-top: 50px; margin-left: 80px; margin-right:80px;"
         >
+        <div class="">
           <p>
             <b>rippleitin.nz</b> is an independant New Zealand based private provider providing server validation of, and information regarding, the xrp ledger.
             <br>
@@ -35,11 +36,11 @@
             <br>rippleitin.nz is clearly identifiable on the network providing domain verificatiion, the master public key of the validator, the hosting of a relevant .toml file
             and connects to the network via the <b>dUNL</b> hosted by ripple.com (currently known as the default unl)
             <br>
-            <br>First established in Feb 2018, the rippleitin.nz validating node was the in first New Zealand,
-            further adding to the decentralised worldwide network of validators, who together form the backbone of the xrp Ledger.
+            <br>First established in Feb 2018, the rippleitin.nz validating node was the first in New Zealand,
+            adding to the decentralised worldwide network of validators, who together form the backbone of the xrp Ledger.
             <br>
             <br>
-            <b>Disclaimer:</b> rippleitin.nz is in no way associated with Ripple, the company (ripple.com), or any of it's products.
+            <b>Disclaimer:</b> rippleitin.nz is in no way associated with Ripple, the company (ripple.com), or any of it's products or services.
             <br>This site provides publicly available information and should be used for information purposes only. This site does not provide financial advice.
           </p>
           <b>
@@ -54,12 +55,14 @@
             <a href="mailto: admin@rippleitin.nz">admin@rippleitin.nz</a>
           </div>
           <br>
+          </div>
         </div>
       </div>
-
-      <br>
+</div>
+      
+      </div>
     </div>
-  </div>
+ 
 </template>
 <script>
 export default {};

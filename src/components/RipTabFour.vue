@@ -1,14 +1,13 @@
 <template>
   <div
-    class="tab-pane h-100 p-3 border border-info rounded"
+    class="cardouter tab-pane h-100 p-3 rounded"
     id="links"
     role="tabpanel"
     aria-labelledby="links-tab"
-    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
   >
-    <div class="card" style="width: 885px;margin: 15px;;">
+    <div class="card" style="width: 885px;margin: 15px;">
       <div class="photo">
-        <div style="text-align: left; margin: 30px 0px 30px 30px; font-size: 16px;">
+        <div class="linkpage">
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
               <div class="fa-xs">
@@ -24,11 +23,11 @@
               <a
                 href="https://xrpcommunity.blog/ripple-xrp-101/"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >Tiffany Hayden</a>
             </div>
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
@@ -44,11 +43,11 @@
               <a
                 href="https://xrpcommunity.blog/author/hodor/"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >HODOR</a>
             </div>
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
@@ -63,11 +62,11 @@
               <a
                 href="https://coil.com"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >@Coil</a>
             </div>
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
@@ -80,7 +79,7 @@
               <a
                 href="https://www.xrptipbot.com/"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >XRP-Tipbot</a>
               for reddit, Twitter and Discord by
               <i>
@@ -88,7 +87,7 @@
               </i>
             </div>
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
@@ -103,11 +102,11 @@
               <a
                 href="https://bithomp.com/"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >XRP Tools</a>
             </div>
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
@@ -123,12 +122,11 @@
               <a
                 href="https://xrpl-labs.com/en/"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >Tristan, Ali and Wietse</a>
             </div>
           </div>
-          <br>
-
+          <br />
 
           <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
@@ -143,13 +141,13 @@
               <a
                 href="https://xrpcommunity.blog/"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >XRP Community</a>
             </div>
           </div>
-          <br>
-           
-              <div class="row">
+          <br />
+
+          <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
               <div class="fa-xs">
                 <i class="fas fa-cog fa-spin"></i>
@@ -159,7 +157,7 @@
               <a
                 href="https://xrpl.org/run-a-rippled-validator.html"
                 target="_blank"
-                style="text-decoration:none;"
+                style="text-decoration:none; color:#34558B"
               >
                 <b>
                   <i>Run an XRPL Validator</i>
@@ -168,43 +166,49 @@
             </div>
           </div>
 
-        <br>
+          <br />
 
-              <div class="row">
+          <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
               <div class="fa-xs">
                 <i class="fas fa-cog fa-spin"></i>
               </div>
             </div>
             <div style="margin-left:30px;">
-              All the latest on the XRP Ledger brought to you 
-              
-            <b><i>  <a
-                href="https://xrpl.org/blog/"
-                target="_blank"
-                style="text-decoration:none;"
-              > by the xrp ledger blog team</a></i> </b>
+              All the latest on the XRP Ledger brought to you
+              <b>
+                <i>
+                  <a
+                    href="https://xrpl.org/blog/"
+                    target="_blank"
+                    style="text-decoration:none; color:#34558B"
+                  >by the xrp ledger blog team</a>
+                </i>
+              </b>
             </div>
           </div>
-  
-          <br>
-           <div class="row">
+
+          <br />
+          <div class="row">
             <div style="margin-top: 3px; margin-left: 30px;">
               <div class="fa-xs">
                 <i class="fas fa-cog fa-spin"></i>
               </div>
             </div>
             <div style="margin-left:30px;">
-              <a href="https://xrpl.org/" target="_blank" style="text-decoration:none;">
+              <a
+                href="https://xrpl.org/"
+                target="_blank"
+                style="text-decoration:none; color:#34558B"
+              >
                 <b>
                   <i>XRP Ledger</i>
                 </b>
               </a> - Powering the Internet of Value - an open source contributable portal for developers and users
             </div>
           </div>
-          
-          
-                  <br>
+
+          <br />
         </div>
       </div>
     </div>

@@ -1,27 +1,24 @@
 <template>
   <div
-    class="tab-pane h-100 p-3 border border-info rounded"
-    id="today"
+    class="cardouter tab-pane h-100 p-3 active rounded-bottom rounded-right"
+    id="entry"
     role="tabpanel"
-    aria-labelledby="today-tab"
-    style="background-image: linear-gradient(white 30%, rgb(98, 189, 219)400%);"
+    aria-labelledby="entry-tab"
   >
+    <!-- The above ACTIVE required for first TAB -->
     <!-- top of base info -->
     <div class="container-fluid" align="left" style="width: 860px; margin: 15px; height: auto;">
       <div style="margin-left:70px;">
         <div>
-          <img
-            src="../assets/black.jpg"
-            class="float-left"
-            style="margin-left: -70px; width: 8%; height: auto; margin-top: 10px; "
-          >
+          <img class="whiteJPG" />
         </div>
         <table
-          class="table table-borderless md p-3 mb-5 shadow bg-light rounded"
+          class="tab1Table table table-borderless md p-3 mb-5 shadow rounded"
           style="border-left: 0; border-right: 0; "
         >
           <thead>
-            <tr style="color: #235281; font-size:12px;">
+            <tr class="theadTab1" style=" font-size:11px;">
+              <!--font color in here -->
               <th class="text-center" scope="col">Date</th>
               <th class="text-center" scope="col">Ledger Count</th>
               <th class="text-center" scope="col">Ledger Interval</th>
@@ -36,29 +33,29 @@
             <tr
               scope="row"
               v-for="a in xrpMetricDay.stats.slice().reverse().splice(index,1)"
-              v-bind:key="`AAA-${a.date}`"
+              :key="`idx-${a.date}`"
             >
               <td
                 class="text-center"
-                style="font-size: 13px;"
+                style="font-size: 12px;"
               >{{ new Date(Date.parse(a.date)).toLocaleDateString('en-NZ',{ month: 'long', day: 'numeric'}) }}</td>
               <td class="text-center" style="font-size: 11px;">{{ a.metric.ledger_count }}</td>
               <td
                 class="text-center"
-                style="font-size: 13px;"
+                style="font-size: 12px;"
               >{{ (a.metric.ledger_interval * 1).toFixed(5)}}</td>
               <td
                 class="text-center"
-                style="font-size: 13px;"
+                style="font-size: 12px;"
               >{{ a.metric.transaction_count.toLocaleString() }}</td>
               <td
                 class="text-center"
-                style="font-size: 13px;"
+                style="font-size: 12px;"
               >{{ (a.metric.tx_per_ledger * 1).toFixed(5)}}</td>
-              <td class="text-center" style="font-size: 13px;">{{ a.metric.accounts_created }}</td>
+              <td class="text-center" style="font-size: 12px;">{{ a.metric.accounts_created }}</td>
               <td
                 class="text-center"
-                style="font-size: 13px;"
+                style="font-size: 12px;"
               >{{ ((xrpDataBrief.data.total* 1).toFixed(0)*1).toLocaleString() }} xrp</td>
             </tr>
           </tbody>
@@ -67,29 +64,23 @@
 
       <div class="col">
         <div align="center" style="margin-left: -25px;">
-          <div style="border: 0.3px solid #5bc0de ;border-radius: 10px;margin-right: -25px;">
-            <p
-              style="font-size: 14px; color:#235281;; margin-top: 15px;"
-            >New XRPL Accounts Created - by Day - Last 45 Days</p>
+          <div class="chartsLayout">
+            <p class="apexchartsHead">New XRPL Accounts Created - by Day - Last 45 Days</p>
 
-            <RipCharts/>
+            <RipCharts />
           </div>
-          <div style="border: 0.3px solid #5bc0de ;border-radius: 10px; margin-right: -25px;">
-            <p
-              style="font-size: 14px; color: #235281;;margin-top: 15px;"
-            >New XRPL Accounts Created - by Week - Last 12 months</p>
-            <Chart/>
+          <div class="chartsLayout">
+            <p class="apexchartsHead">New XRPL Accounts Created - by Week - Last 12 months</p>
+            <RipChart1 />
           </div>
-          <div style="border: 0.3px solid #5bc0de ;border-radius: 10px;margin-right: -25px;">
-            <p
-              style="font-size: 14px; color: #235281;;margin-top: 15px;"
-            >XRPL Total Transactions - by Day - Last 45 Days</p>
+          <div class="chartsLayout">
+            <p class="apexchartsHead">XRPL Total Transactions - by Day - Last 45 Days</p>
 
-            <RipCharts2/>
+            <RipCharts2 />
           </div>
-          <div style="margin-right: -25px;font-size: 9px; color: #235281; margin-bottom:-14px;">
-          DISCLAIMER: All statistics quoted on this site may be subject to change without notice and no guarantee can be given as to their accuracy.
-          </div>
+          <div
+            class="disclaimer"
+          >DISCLAIMER: All statistics quoted on this site may be subject to change without notice and no guarantee can be given as to their accuracy.</div>
         </div>
       </div>
     </div>
@@ -99,9 +90,11 @@
 
   <!--end of Card 4-->
 
-  <!-- End of Tab1-->
+  <!-- End of Tab1e-->
 </template>
 <script>
+
+
 Date.prototype.getWeek = function() {
   var d = new Date(
     Date.UTC(this.getFullYear(), this.getMonth(), this.getDate())
@@ -111,17 +104,18 @@ Date.prototype.getWeek = function() {
   var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
   return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
 };
-import RipCharts from "./RipCharts";
-import RipCharts2 from "./RipCharts2";
-import Chart from "./Chart";
 
 //---------------------------------
+
+import RipCharts from "./RipCharts"
+import RipCharts2 from "./RipCharts2"
+import RipChart1 from "./RipChart1"
+
 export default {
-  name: "sXRP",
   components: {
-    RipCharts,
+    RipChart1,
     RipCharts2,
-    Chart
+    RipCharts
   },
 
   data: function() {
