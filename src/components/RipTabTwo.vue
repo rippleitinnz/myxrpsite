@@ -293,7 +293,7 @@
                       <tr scope="row" v-for="q in validatorsData.validators" :key="`ijk-${q.validation_public_key}`">
                         <td class="Tab4">
                           <a
-                            :href="'https://xrpcharts.ripple.com/#/validators/' + q.validation_public_key"
+                            :href="'https://livenet.xrpl.org/validators/' + q.validation_public_key"
                             target="_blank"
                             class="pubkeyval"
                           >&nbsp;&nbsp;{{ q.validation_public_key }}</a>
