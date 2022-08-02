@@ -648,7 +648,7 @@
                                 >
                                   <td class="Tab4">
                                     <a
-                                      v-bind:href="'https://xrpcharts.ripple.com/#/validators/' + q.validation_public_key"
+                                      v-bind:href="'https://livenet.xrpl.org/validators/' + q.validation_public_key"
                                       target="_blank"
                                       style="text-decoration:none;"
                                     >{{ q.validation_public_key }}</a>
